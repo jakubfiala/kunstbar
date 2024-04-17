@@ -38,12 +38,12 @@ async function init() {
   const cubeLoader = new THREE.CubeTextureLoader();
   cubeLoader.setPath('./textures/bridge/');
 
-  const textureCube = cubeLoader.load( [ 'posx.jpg', 'negx.jpg', 'posy.jpg', 'negy.jpg', 'posz.jpg', 'negz.jpg' ] );
+  const textureCube = cubeLoader.load(['posx.jpg', 'negx.jpg', 'posy.jpg', 'negy.jpg', 'posz.jpg', 'negz.jpg']);
 
   scene = new THREE.Scene();
   scene.background = new THREE.Color(0xdddddd);
-  const light = new THREE.AmbientLight( 0x404040 ); // soft white light
-  scene.add( light );
+  const light = new THREE.AmbientLight(0x404040); // soft white light
+  scene.add(light);
 
   const dirLight = new THREE.DirectionalLight(0xffffff, 30);
   dirLight.position.set(5, 10, 3);
@@ -130,3 +130,9 @@ function animate() {
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
 }
+
+window.onresize = function () {
+  camera.aspect = window.innerWidth / (window.innerHeight * 2);
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight * 2);
+};
