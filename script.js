@@ -66,7 +66,7 @@ async function init() {
   scene.add(dirLight);
   dirLight.target.position.set(0,0,0);
 
-  for (const wall of walls({ width: aspect === PORTRAIT ? 2 : 8 })) {
+  for (const wall of walls({ width: aspect === PORTRAIT ? 2.2 : 8 })) {
     scene.add(wall);
   }
 
