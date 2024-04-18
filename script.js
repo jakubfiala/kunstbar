@@ -9,7 +9,14 @@ let physics;
 
 let boxes;
 
+let animation = true;
+
 const choose = list => list[Math.floor(Math.random() * list.length)];
+
+const PORTRAIT = 0;
+const LANDSCAPE = 1;
+
+const aspect = window.innerWidth >= window.innerHeight ? LANDSCAPE : PORTRAIT;
 
 init();
 
@@ -59,7 +66,7 @@ async function init() {
   scene.add(dirLight);
   dirLight.target.position.set(0,0,0);
 
-  for (const wall of walls()) {
+  for (const wall of walls({ width: aspect === PORTRAIT ? 2 : 8 })) {
     scene.add(wall);
   }
 
@@ -78,9 +85,9 @@ async function init() {
   });
   const matrix = new THREE.Matrix4();
 
-  const boxScale = 2;
+  const boxScale = aspect === PORTRAIT ? 2.5 : 3.5;
   const geometryBox = new THREE.BoxGeometry(boxScale * 0.2, boxScale * 0.5, boxScale * 0.09);
-  boxes = new THREE.InstancedMesh(geometryBox, material, 150);
+  boxes = new THREE.InstancedMesh(geometryBox, material, 100);
   boxes.instanceMatrix.setUsage(THREE.DynamicDrawUsage); // will be updated every frame
   boxes.castShadow = true;
   boxes.receiveShadow = true;
@@ -88,7 +95,10 @@ async function init() {
   scene.add(boxes);
 
   for (let i = 0; i < boxes.count; i++) {
-    matrix.setPosition(0, Math.random() * 22 + 2, 0);
+    const boxX = aspect === PORTRAIT
+      ? Math.random() * 1 - 0.5
+      : Math.random() * 3 - 1.5;
+    matrix.setPosition(boxX, Math.random() * 22 + 2, 0);
     // matrix.setPosition(Math.random() * 0.95 - 0.5, Math.random() * 10 + 5, Math.random() * 0.05 - 0.0025);
     boxes.setMatrixAt(i, matrix);
   }
@@ -114,10 +124,15 @@ async function init() {
   document.body.insertBefore(renderer.domElement, drawingCanvas);
 
   animate();
+
+  setTimeout(() => animation = false, 20000);
 }
 
 function animate() {
-  requestAnimationFrame(animate);
+  if (animation) {
+    requestAnimationFrame(animate);
+  }
+
   renderer.render(scene, camera);
 }
 

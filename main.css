@@ -54,7 +54,7 @@ main {
   z-index: 1;
   position: relative;
   margin: 1rem;
-  max-width: 1000px;
+  max-width: 500px;
   line-height: 1.5;
   animation: fade-in 700ms 2.5s both;
   font-weight: bold;
@@ -74,9 +74,5 @@ canvas {
 
   main {
     margin: 0 5rem;
-  }
-
-  canvas {
-    left: calc(50% - 300px);
   }
 }
