@@ -1,6 +1,7 @@
+import Atrament from 'atrament';
 import * as THREE from 'three';
 import { RapierPhysics } from 'three/addons/rapier.js';
-import Atrament from 'atrament';
+import { RGBELoader } from 'three/addons/rgbe.js';
 
 import walls from './walls.js';
 
@@ -8,8 +9,7 @@ let camera, scene, renderer;
 let physics;
 
 let boxes;
-
-let animation = true;
+let environment;
 
 const choose = list => list[Math.floor(Math.random() * list.length)];
 
@@ -18,7 +18,12 @@ const LANDSCAPE = 1;
 
 const aspect = window.innerWidth >= window.innerHeight ? LANDSCAPE : PORTRAIT;
 
-init();
+new RGBELoader()
+  .setPath( 'hdri/' )
+  .load( 'tief_etz_1k.hdr', function ( texture ) {
+    environment = texture;
+    init();
+  });
 
 const colorPalette = {
   orange: 'f57e45',
@@ -40,7 +45,7 @@ async function init() {
   window.camera = camera;
 
   // const textureLoader = new THREE.TextureLoader();
-  // const metalTexture = textureLoader.load('./texture.png');
+  // const metalTexture = textureLoader.load('./img/seamless_orm.png');
   // const metalnessMap = textureLoader.load('./texture_r.png');
   // const roughnessMap = textureLoader.load('./texture_m.png');
   // const bumpMap = textureLoader.load('./texture_h.png');
@@ -50,14 +55,10 @@ async function init() {
   const cubeLoader = new THREE.CubeTextureLoader();
   cubeLoader.setPath('./textures/bridge/');
 
-  // const textureCube = cubeLoader.load(['posx.jpg', 'negx.jpg', 'posy.jpg', 'negy.jpg', 'posz.jpg', 'negz.jpg']);
-
   scene = new THREE.Scene();
   scene.background = new THREE.Color(0xdddddd);
-  const light = new THREE.AmbientLight(0x404040); // soft white light
-  scene.add(light);
 
-  const dirLight = new THREE.DirectionalLight(0xffffff, 100);
+  const dirLight = new THREE.DirectionalLight(0xffffff, 50);
   dirLight.position.set(0, 5, 5);
   dirLight.castShadow = true;
   dirLight.shadow.camera.zoom = 2;
@@ -70,13 +71,14 @@ async function init() {
     scene.add(wall);
   }
 
-  const material = new THREE.MeshPhongMaterial({
+  const material = new THREE.MeshStandardMaterial({
     // map: metalTexture,
-    color: 0x333333,
-    shininess: 100,
-    // aoMap,
-    // metalnessMap,
-    // roughnessMap,
+    color: 0x999999,
+    metalness: 0.9,
+    roughness: 0.2,
+    // aoMap: metalTexture,
+    // metalnessMap: metalTexture,
+    // roughnessMap: metalTexture,
     // envMap: textureCube,
     // normalMap,
     // normalScale: new THREE.Vector2(1.5, 1.5),
@@ -85,9 +87,9 @@ async function init() {
   });
   const matrix = new THREE.Matrix4();
 
-  const boxScale = aspect === PORTRAIT ? 2.5 : 3.5;
+  const boxScale = aspect === PORTRAIT ? 2.5 : 4;
   const geometryBox = new THREE.BoxGeometry(boxScale * 0.2, boxScale * 0.5, boxScale * 0.09);
-  boxes = new THREE.InstancedMesh(geometryBox, material, 100);
+  boxes = new THREE.InstancedMesh(geometryBox, material, 150);
   boxes.instanceMatrix.setUsage(THREE.DynamicDrawUsage); // will be updated every frame
   boxes.castShadow = true;
   boxes.receiveShadow = true;
@@ -123,16 +125,15 @@ async function init() {
 
   document.body.insertBefore(renderer.domElement, drawingCanvas);
 
-  animate();
+  environment.mapping = THREE.EquirectangularReflectionMapping;
+  scene.environment = environment;
+  material.envMap = environment;
 
-  setTimeout(() => animation = false, 20000);
+  animate();
 }
 
 function animate() {
-  if (animation) {
-    requestAnimationFrame(animate);
-  }
-
+  requestAnimationFrame(animate);
   renderer.render(scene, camera);
 }
 
