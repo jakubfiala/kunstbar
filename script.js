@@ -2,6 +2,8 @@ import * as THREE from 'three';
 import { RapierPhysics } from 'three/addons/rapier.js';
 import Atrament from 'atrament';
 
+import walls from './walls.js';
+
 let camera, scene, renderer;
 let physics;
 
@@ -22,84 +24,72 @@ const colorPalette = {
 async function init() {
   physics = await RapierPhysics();
 
-  camera = new THREE.PerspectiveCamera(50, window.innerWidth / (window.innerHeight * 2), 0.1, 100);
-  camera.position.set(1, -0.15, 0.5);
-  camera.lookAt(-1, -0.9, -0.25);
+  camera = new THREE.PerspectiveCamera(50, window.innerWidth / (window.innerHeight), 0.1, 100);
+
+  const x = 0;
+  const y = 2.5;
+  camera.position.set(x,y,5);
+  camera.lookAt(x,y,0);
   window.camera = camera;
 
-  const textureLoader = new THREE.TextureLoader();
-  const metalTexture = textureLoader.load('./texture.png');
-  const metalnessMap = textureLoader.load('./texture_r.png');
-  const roughnessMap = textureLoader.load('./texture_m.png');
-  const bumpMap = textureLoader.load('./texture_h.png');
-  const normalMap = textureLoader.load('./texture_n.png');
-  const aoMap = textureLoader.load('./texture_o.png');
+  // const textureLoader = new THREE.TextureLoader();
+  // const metalTexture = textureLoader.load('./texture.png');
+  // const metalnessMap = textureLoader.load('./texture_r.png');
+  // const roughnessMap = textureLoader.load('./texture_m.png');
+  // const bumpMap = textureLoader.load('./texture_h.png');
+  // const normalMap = textureLoader.load('./texture_n.png');
+  // const aoMap = textureLoader.load('./texture_o.png');
 
   const cubeLoader = new THREE.CubeTextureLoader();
   cubeLoader.setPath('./textures/bridge/');
 
-  const textureCube = cubeLoader.load(['posx.jpg', 'negx.jpg', 'posy.jpg', 'negy.jpg', 'posz.jpg', 'negz.jpg']);
+  // const textureCube = cubeLoader.load(['posx.jpg', 'negx.jpg', 'posy.jpg', 'negy.jpg', 'posz.jpg', 'negz.jpg']);
 
   scene = new THREE.Scene();
   scene.background = new THREE.Color(0xdddddd);
   const light = new THREE.AmbientLight(0x404040); // soft white light
   scene.add(light);
 
-  const dirLight = new THREE.DirectionalLight(0xffffff, 30);
-  dirLight.position.set(5, 10, 3);
+  const dirLight = new THREE.DirectionalLight(0xffffff, 100);
+  dirLight.position.set(0, 5, 5);
   dirLight.castShadow = true;
   dirLight.shadow.camera.zoom = 2;
   dirLight.shadow.radius = 3;
   scene.add(dirLight.target);
   scene.add(dirLight);
-  dirLight.target.position.set(-1, -0.9, -0.25);
+  dirLight.target.position.set(0,0,0);
 
-  const floor = new THREE.Mesh(
-    new THREE.BoxGeometry(100, 5, 100),
-    new THREE.ShadowMaterial({ color: 0x333333 }),
-  );
+  for (const wall of walls()) {
+    scene.add(wall);
+  }
 
-  floor.position.y = -3;
-  floor.receiveShadow = true;
-  floor.userData.physics = { mass: 0 };
-  scene.add(floor);
-
-  const wall = new THREE.Mesh(
-    new THREE.BoxGeometry(100, 100, 1),
-    new THREE.MeshBasicMaterial({ color: 0xdddddd }),
-  );
-
-  wall.position.z = -2;
-  wall.receiveShadow = false;
-  wall.userData.physics = { mass: 0 };
-  scene.add(wall);
-
-
-
-  const material = new THREE.MeshStandardMaterial({
-    map: metalTexture,
-    color: 0x111111,
-    aoMap,
-    metalnessMap,
-    roughnessMap,
-    envMap: textureCube,
-    normalMap,
-    normalScale: new THREE.Vector2(1.5, 1.5),
-    bumpMap,
-    bumpScale: 1.5
+  const material = new THREE.MeshPhongMaterial({
+    // map: metalTexture,
+    color: 0x333333,
+    shininess: 100,
+    // aoMap,
+    // metalnessMap,
+    // roughnessMap,
+    // envMap: textureCube,
+    // normalMap,
+    // normalScale: new THREE.Vector2(1.5, 1.5),
+    // bumpMap,
+    // bumpScale: 1.5
   });
   const matrix = new THREE.Matrix4();
 
-  const geometryBox = new THREE.BoxGeometry(0.1, 0.25, 0.045);
-  boxes = new THREE.InstancedMesh(geometryBox, material, 60);
+  const boxScale = 2;
+  const geometryBox = new THREE.BoxGeometry(boxScale * 0.2, boxScale * 0.5, boxScale * 0.09);
+  boxes = new THREE.InstancedMesh(geometryBox, material, 150);
   boxes.instanceMatrix.setUsage(THREE.DynamicDrawUsage); // will be updated every frame
   boxes.castShadow = true;
   boxes.receiveShadow = true;
-  boxes.userData.physics = { mass: 0.2 };
+  boxes.userData.physics = { mass: 0.2, restitution: 0.1 };
   scene.add(boxes);
 
   for (let i = 0; i < boxes.count; i++) {
-    matrix.setPosition(Math.random() * 0.95 - 1, Math.random() * 1.2 + 0.5, Math.random() * 0.95 - 1);
+    matrix.setPosition(0, Math.random() * 22 + 2, 0);
+    // matrix.setPosition(Math.random() * 0.95 - 0.5, Math.random() * 10 + 5, Math.random() * 0.05 - 0.0025);
     boxes.setMatrixAt(i, matrix);
   }
 
@@ -109,13 +99,13 @@ async function init() {
 
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.setSize(window.innerWidth, window.innerHeight * 2);
+  renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
   const drawingCanvas = document.getElementById('drawing');
   drawingCanvas.width = window.innerWidth;
-  drawingCanvas.height = window.innerHeight * 2;
+  drawingCanvas.height = window.innerHeight;
 
   const atrament = new Atrament(drawingCanvas);
   atrament.color = `#${choose(Object.values(colorPalette))}`;
@@ -132,7 +122,7 @@ function animate() {
 }
 
 window.onresize = function () {
-  camera.aspect = window.innerWidth / (window.innerHeight * 2);
+  camera.aspect = window.innerWidth / (window.innerHeight);
   camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight * 2);
+  renderer.setSize(window.innerWidth, window.innerHeight);
 };
