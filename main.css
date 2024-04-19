@@ -1,7 +1,7 @@
-@font-face {
+/* @font-face {
   font-family: 'Mikola';
   src: url('fonts/Mikola.woff');
-}
+} */
 
 @keyframes fade-in {
   from {
@@ -59,6 +59,8 @@ main {
   animation: fade-in 700ms 2.5s both;
   font-weight: bold;
   font-size: 2rem;
+  /* backdrop-filter: blur(20px); */
+  /* padding: 0 2rem; */
 }
 
 canvas {

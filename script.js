@@ -4,6 +4,7 @@ import { RapierPhysics } from 'three/addons/rapier.js';
 import { RGBELoader } from 'three/addons/rgbe.js';
 
 import walls from './walls.js';
+import { rad } from './vercajch.js';
 
 let camera, scene, renderer;
 let physics;
@@ -20,7 +21,7 @@ const aspect = window.innerWidth >= window.innerHeight ? LANDSCAPE : PORTRAIT;
 
 new RGBELoader()
   .setPath( 'hdri/' )
-  .load( 'tief_etz_1k.hdr', function ( texture ) {
+  .load( 'unfinished_office_1k.hdr', function ( texture ) {
     environment = texture;
     init();
   });
@@ -44,52 +45,56 @@ async function init() {
   camera.lookAt(x,y,0);
   window.camera = camera;
 
-  // const textureLoader = new THREE.TextureLoader();
-  // const metalTexture = textureLoader.load('./img/seamless_orm.png');
-  // const metalnessMap = textureLoader.load('./texture_r.png');
-  // const roughnessMap = textureLoader.load('./texture_m.png');
-  // const bumpMap = textureLoader.load('./texture_h.png');
-  // const normalMap = textureLoader.load('./texture_n.png');
-  // const aoMap = textureLoader.load('./texture_o.png');
+  const textureLoader = new THREE.TextureLoader();
+  const metalTexture = textureLoader.load('./img/steel/tall.MetalSteelBrushed001_COL_2K_METALNESS.png');
+  const metalnessMap = textureLoader.load('./img/steel/tall.MetalSteelBrushed001_METALNESS_2K_METALNESS.png');
+  const roughnessMap = textureLoader.load('./img/steel/tall.MetalSteelBrushed001_ROUGHNESS_2K_METALNESS.png');
+  const bumpMap = textureLoader.load('./img/steel/tall.MetalSteelBrushed001_BUMP16_2K_METALNESS.png');
+  const normalMap = textureLoader.load('./img/steel/tall.MetalSteelBrushed001_NRM_2K_METALNESS.png');
 
-  const cubeLoader = new THREE.CubeTextureLoader();
-  cubeLoader.setPath('./textures/bridge/');
+  [metalTexture, metalnessMap, roughnessMap, bumpMap, normalMap].forEach((texture) => {
+    texture.colorSpace = THREE.SRGBColorSpace;
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
+    texture.repeat.set(0.75, 0.75);
+    texture.rotation = rad(90);
+  });
 
   scene = new THREE.Scene();
   scene.background = new THREE.Color(0xdddddd);
 
-  const dirLight = new THREE.DirectionalLight(0xffffff, 50);
-  dirLight.position.set(0, 5, 5);
+  const dirLight = new THREE.DirectionalLight(0xffffff, 20);
+  dirLight.position.set(-3, 8, 3);
   dirLight.castShadow = true;
   dirLight.shadow.camera.zoom = 2;
   dirLight.shadow.radius = 3;
   scene.add(dirLight.target);
   scene.add(dirLight);
-  dirLight.target.position.set(0,0,0);
+  dirLight.target.position.set(0,0,-2);
 
   for (const wall of walls({ width: aspect === PORTRAIT ? 2.2 : 8 })) {
     scene.add(wall);
   }
 
   const material = new THREE.MeshStandardMaterial({
-    // map: metalTexture,
-    color: 0x999999,
-    metalness: 0.9,
-    roughness: 0.2,
+    map: metalTexture,
+    // metalness: 0.9,
+    roughness: 0.01,
     // aoMap: metalTexture,
-    // metalnessMap: metalTexture,
-    // roughnessMap: metalTexture,
+    metalnessMap,
+    metalness: 0.1,
+    roughnessMap,
     // envMap: textureCube,
-    // normalMap,
+    normalMap,
     // normalScale: new THREE.Vector2(1.5, 1.5),
-    // bumpMap,
+    bumpMap,
     // bumpScale: 1.5
   });
   const matrix = new THREE.Matrix4();
 
-  const boxScale = aspect === PORTRAIT ? 2.5 : 4;
+  const boxScale = aspect === PORTRAIT ? 2.5 : 3.5;
   const geometryBox = new THREE.BoxGeometry(boxScale * 0.2, boxScale * 0.5, boxScale * 0.09);
-  boxes = new THREE.InstancedMesh(geometryBox, material, 150);
+  boxes = new THREE.InstancedMesh(geometryBox, material, 100);
   boxes.instanceMatrix.setUsage(THREE.DynamicDrawUsage); // will be updated every frame
   boxes.castShadow = true;
   boxes.receiveShadow = true;
