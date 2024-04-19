@@ -63,7 +63,7 @@ async function init() {
   scene = new THREE.Scene();
   scene.background = new THREE.Color(0xdddddd);
 
-  const dirLight = new THREE.DirectionalLight(0xffffff, 20);
+  const dirLight = new THREE.DirectionalLight(0xffffff, 40);
   dirLight.position.set(-3, 8, 3);
   dirLight.castShadow = true;
   dirLight.shadow.camera.zoom = 2;
@@ -79,9 +79,9 @@ async function init() {
   const material = new THREE.MeshStandardMaterial({
     map: metalTexture,
     // metalness: 0.9,
-    roughness: 0.01,
+    // roughness: 0.01,
     // aoMap: metalTexture,
-    // metalness: 1,
+    metalness: 0.2,
     metalnessMap,
     roughnessMap,
     // envMap: textureCube,
