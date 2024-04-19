@@ -2,9 +2,15 @@ import Atrament from 'atrament';
 import * as THREE from 'three';
 import { RapierPhysics } from 'three/addons/rapier.js';
 import { RGBELoader } from 'three/addons/rgbe.js';
+// import { EXRLoader } from './addons/exr.js';
+
+import { RectAreaLightUniformsLib } from './libs/RectAreaUniformsLib.js';
 
 import walls from './walls.js';
 import { rad } from './vercajch.js';
+import galvanizedZinc from './materials/galvanized-zinc.js';
+// import brushedSteel from './materials/brushed-steel.js';
+// import dude from './materials/dude.js';
 
 let camera, scene, renderer;
 let physics;
@@ -26,6 +32,13 @@ new RGBELoader()
     init();
   });
 
+// new EXRLoader()
+//   .setPath( 'exr/' )
+//   .load( 'GSG_HC015_A021_Showroom_01.exr', function (texture) {
+//     environment = texture;
+//     init();
+//   });
+
 const colorPalette = {
   orange: 'f57e45',
   green: 'bfe407',
@@ -35,6 +48,7 @@ const colorPalette = {
 }
 
 async function init() {
+  RectAreaLightUniformsLib.init();
   physics = await RapierPhysics();
 
   camera = new THREE.PerspectiveCamera(50, window.innerWidth / (window.innerHeight), 0.1, 100);
@@ -45,51 +59,51 @@ async function init() {
   camera.lookAt(x,y,0);
   window.camera = camera;
 
-  const textureLoader = new THREE.TextureLoader();
-  const metalTexture = textureLoader.load('./img/steel/tall.MetalSteelBrushed001_COL_2K_METALNESS.png');
-  const metalnessMap = textureLoader.load('./img/steel/tall.MetalSteelBrushed001_METALNESS_2K_METALNESS.png');
-  const roughnessMap = textureLoader.load('./img/steel/tall.MetalSteelBrushed001_ROUGHNESS_2K_METALNESS.png');
-  const bumpMap = textureLoader.load('./img/steel/tall.MetalSteelBrushed001_BUMP16_2K_METALNESS.png');
-  const normalMap = textureLoader.load('./img/steel/tall.MetalSteelBrushed001_NRM_2K_METALNESS.png');
-
-  [metalTexture, metalnessMap, roughnessMap, bumpMap, normalMap].forEach((texture) => {
-    texture.colorSpace = THREE.SRGBColorSpace;
-    texture.wrapS = THREE.RepeatWrapping;
-    texture.wrapT = THREE.RepeatWrapping;
-    texture.repeat.set(0.75, 0.75);
-    texture.rotation = rad(90);
-  });
-
   scene = new THREE.Scene();
   scene.background = new THREE.Color(0xdddddd);
 
-  const dirLight = new THREE.DirectionalLight(0xffffff, 40);
+  const dirLight = new THREE.DirectionalLight(0xffffff, 50);
   dirLight.position.set(-3, 8, 3);
   dirLight.castShadow = true;
   dirLight.shadow.camera.zoom = 2;
   dirLight.shadow.radius = 3;
   scene.add(dirLight.target);
   scene.add(dirLight);
-  dirLight.target.position.set(0,0,-2);
+  dirLight.target.position.set(0,0,0);
+
+
+  // const dirLight2 = new THREE.DirectionalLight(0xffffff, 1);
+  // dirLight2.position.set(0, 1, 5);
+  // dirLight2.castShadow = true;
+  // dirLight2.shadow.camera.zoom = 2;
+  // dirLight2.shadow.radius = 3;
+  // scene.add(dirLight2.target);
+  // scene.add(dirLight2);
+  // dirLight2.target.position.set(0,0,0);
+
+  // const pointLight = new THREE.PointLight(0xffffff, 100);
+  // pointLight.position.set(0, 5, 5);
+  // pointLight.castShadow = true;
+  // scene.add(pointLight);
+
+
+  const width = 2.2;
+  const height = 2.2;
+  const intensity = 500;
+  const rectLight = new THREE.RectAreaLight( 0xffffff, intensity,  width, height );
+  rectLight.castShadow = true;
+  rectLight.position.set( 0, 5, 5 );
+  rectLight.lookAt( 0, 1, 0 );
+  scene.add(rectLight);
 
   for (const wall of walls({ width: aspect === PORTRAIT ? 2.2 : 8 })) {
     scene.add(wall);
   }
 
-  const material = new THREE.MeshStandardMaterial({
-    map: metalTexture,
-    // metalness: 0.9,
-    // roughness: 0.01,
-    // aoMap: metalTexture,
-    metalness: 0.2,
-    metalnessMap,
-    roughnessMap,
-    // envMap: textureCube,
-    normalMap,
-    // normalScale: new THREE.Vector2(1.5, 1.5),
-    bumpMap,
-    // bumpScale: 1.5
-  });
+  // const material = brushedSteel();
+  const material = galvanizedZinc();
+  // const material = dude();
+
   const matrix = new THREE.Matrix4();
 
   const boxScale = aspect === PORTRAIT ? 2.5 : 3.5;
@@ -131,6 +145,7 @@ async function init() {
   document.body.insertBefore(renderer.domElement, drawingCanvas);
 
   environment.mapping = THREE.EquirectangularReflectionMapping;
+  environment.rotation = rad(90);
   scene.environment = environment;
   material.envMap = environment;
 
