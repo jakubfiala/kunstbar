@@ -107,8 +107,9 @@ async function init() {
   const matrix = new THREE.Matrix4();
 
   const boxScale = aspect === PORTRAIT ? 2.5 : 3.5;
+  const boxCount = aspect === PORTRAIT ? 40 : 100;
   const geometryBox = new THREE.BoxGeometry(boxScale * 0.2, boxScale * 0.5, boxScale * 0.09);
-  boxes = new THREE.InstancedMesh(geometryBox, material, 100);
+  boxes = new THREE.InstancedMesh(geometryBox, material, boxCount);
   boxes.instanceMatrix.setUsage(THREE.DynamicDrawUsage); // will be updated every frame
   boxes.castShadow = true;
   boxes.receiveShadow = true;
@@ -150,20 +151,20 @@ async function init() {
   material.envMap = environment;
 
   document.getElementById('g-change-left').addEventListener('click', () => {
-    physics.gravity.x = -9.81;
-    physics.gravity.y = 0;
+    physics.gravity.x = -7.81;
+    physics.gravity.y = 2;
     // document.getElementById('debugger').innerText = JSON.stringify(physics.gravity);
   });
 
   document.getElementById('g-change-right').addEventListener('click', () => {
-    physics.gravity.x = 9.81;
-    physics.gravity.y = 0;
+    physics.gravity.x = 7.81;
+    physics.gravity.y = 2;
     // document.getElementById('debugger').innerText = JSON.stringify(physics.gravity);
   });
 
   document.getElementById('g-change-top').addEventListener('click', () => {
-    physics.gravity.x = 0;
-    physics.gravity.y = 9.81;
+    physics.gravity.x = 1;
+    physics.gravity.y = 8.81;
     // document.getElementById('debugger').innerText = JSON.stringify(physics.gravity);
   });
 
