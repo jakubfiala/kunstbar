@@ -152,31 +152,31 @@ async function init() {
   document.getElementById('g-change-left').addEventListener('click', () => {
     physics.gravity.x = -9.81;
     physics.gravity.y = 0;
-    document.getElementById('debugger').innerText = JSON.stringify(physics.gravity);
+    // document.getElementById('debugger').innerText = JSON.stringify(physics.gravity);
   });
 
   document.getElementById('g-change-right').addEventListener('click', () => {
     physics.gravity.x = 9.81;
     physics.gravity.y = 0;
-    document.getElementById('debugger').innerText = JSON.stringify(physics.gravity);
+    // document.getElementById('debugger').innerText = JSON.stringify(physics.gravity);
   });
 
   document.getElementById('g-change-top').addEventListener('click', () => {
     physics.gravity.x = 0;
     physics.gravity.y = 9.81;
-    document.getElementById('debugger').innerText = JSON.stringify(physics.gravity);
+    // document.getElementById('debugger').innerText = JSON.stringify(physics.gravity);
   });
 
-  window.addEventListener('deviceorientation', ({ alpha }) => {
-    try {
-      const angle = rad(alpha);
-      physics.gravity.x = Math.sin(angle) * 9.81;
-      physics.gravity.y = Math.cos(angle) * 9.81;
-      document.getElementById('debugger').innerText = JSON.stringify(physics.gravity);
-    } catch (err) {
-      document.getElementById('debugger').innerText = `${err}`;
-    }
-  });
+  // window.addEventListener('deviceorientation', ({ alpha }) => {
+  //   try {
+  //     const angle = rad(alpha);
+  //     physics.gravity.x = Math.sin(angle) * 9.81;
+  //     physics.gravity.y = Math.cos(angle) * 9.81;
+  //     document.getElementById('debugger').innerText = JSON.stringify(physics.gravity);
+  //   } catch (err) {
+  //     document.getElementById('debugger').innerText = `${err}`;
+  //   }
+  // });
 
   animate();
 }
