@@ -169,8 +169,8 @@ async function init() {
 
   window.addEventListener('deviceorientation', ({ alpha }) => {
     const angle = rad(alpha);
-    physics.gravity.x = sin(angle) * 9.81;
-    physics.gravity.y = cos(angle) * 9.81;
+    physics.gravity.x = Math.sin(angle) * 9.81;
+    physics.gravity.y = Math.cos(angle) * 9.81;
     document.getElementById('debugger').innerText = JSON.stringify(physics.gravity);
   });
 
