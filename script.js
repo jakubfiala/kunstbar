@@ -91,7 +91,6 @@ async function init() {
   const height = 2.2;
   const intensity = 500;
   const rectLight = new THREE.RectAreaLight( 0xffffff, intensity,  width, height );
-  rectLight.castShadow = true;
   rectLight.position.set( 0, 5, 5 );
   rectLight.lookAt( 0, 1, 0 );
   scene.add(rectLight);
@@ -106,7 +105,7 @@ async function init() {
 
   const matrix = new THREE.Matrix4();
 
-  const boxScale = aspect === PORTRAIT ? 2.5 : 3.5;
+  const boxScale = aspect === PORTRAIT ? 2.5 : 3.3;
   const boxCount = aspect === PORTRAIT ? 60 : 100;
   const geometryBox = new THREE.BoxGeometry(boxScale * 0.2, boxScale * 0.5, boxScale * 0.09);
   boxes = new THREE.InstancedMesh(geometryBox, material, boxCount);
