@@ -212,7 +212,8 @@ async function RapierPhysics() {
 		addScene: addScene,
 		addMesh: addMesh,
 		setMeshPosition: setMeshPosition,
-		setMeshVelocity: setMeshVelocity
+		setMeshVelocity: setMeshVelocity,
+		gravity,
 	};
 
 }

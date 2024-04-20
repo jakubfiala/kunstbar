@@ -29,7 +29,6 @@ html, body {
   background: #dddddd;
   margin: 0;
   padding: 0;
-  cursor: crosshair;
 }
 
 body {
@@ -59,11 +58,11 @@ main {
   animation: fade-in 700ms 2.5s both;
   font-weight: bold;
   font-size: 2rem;
-  /* backdrop-filter: blur(20px); */
-  /* padding: 0 2rem; */
+  text-transform: uppercase;
 }
 
 canvas {
+  cursor: crosshair;
   position: fixed;
   top: 0;
   left: 0;
@@ -76,5 +75,36 @@ canvas {
 
   main {
     margin: 0 5rem;
+  }
+}
+
+.g-change {
+  cursor: w-resize;
+  position: fixed;
+  height: 100vh;
+  width: 1rem;
+  top: 0;
+}
+
+.g-change--right {
+  cursor: e-resize;
+  right: 0;
+}
+
+.g-change--top {
+  cursor: n-resize;
+  height: 1rem;
+  width: 100vw;
+}
+
+@media screen and (min-width: 768px) {
+  .g-change {
+    width: 5rem;
+  }
+
+  .g-change--top {
+    cursor: n-resize;
+    height: 5rem;
+    width: 100vw;
   }
 }

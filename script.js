@@ -149,6 +149,27 @@ async function init() {
   scene.environment = environment;
   material.envMap = environment;
 
+  document.getElementById('g-change-left').addEventListener('click', () => {
+    physics.gravity.x = -9.81;
+    physics.gravity.y = 0;
+  });
+
+  document.getElementById('g-change-right').addEventListener('click', () => {
+    physics.gravity.x = 9.81;
+    physics.gravity.y = 0;
+  });
+
+  document.getElementById('g-change-top').addEventListener('click', () => {
+    physics.gravity.x = 0;
+    physics.gravity.y = 9.81;
+  });
+
+  window.addEventListener('deviceorientation', ({ alpha }) => {
+    const angle = rad(alpha);
+    physics.gravity.x = sin(angle) * 9.81;
+    physics.gravity.y = cos(angle) * 9.81;
+  });
+
   animate();
 }
 
