@@ -107,7 +107,7 @@ async function init() {
   const matrix = new THREE.Matrix4();
 
   const boxScale = aspect === PORTRAIT ? 2.5 : 3.5;
-  const boxCount = aspect === PORTRAIT ? 40 : 100;
+  const boxCount = aspect === PORTRAIT ? 60 : 100;
   const geometryBox = new THREE.BoxGeometry(boxScale * 0.2, boxScale * 0.5, boxScale * 0.09);
   boxes = new THREE.InstancedMesh(geometryBox, material, boxCount);
   boxes.instanceMatrix.setUsage(THREE.DynamicDrawUsage); // will be updated every frame
