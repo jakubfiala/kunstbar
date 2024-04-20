@@ -96,7 +96,7 @@ async function init() {
   rectLight.lookAt( 0, 1, 0 );
   scene.add(rectLight);
 
-  for (const wall of walls({ width: aspect === PORTRAIT ? 2.2 : 8 })) {
+  for (const wall of walls()) {
     scene.add(wall);
   }
 

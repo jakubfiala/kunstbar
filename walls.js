@@ -1,6 +1,6 @@
 import { Mesh, BoxGeometry, MeshStandardMaterial } from 'three';
 
-import { rad } from './vercajch.js';
+import { rad, map } from './vercajch.js';
 
 const material = new MeshStandardMaterial({ transparent: true, opacity: 0 });
 // const material = new MeshStandardMaterial({ color: 'red' });
@@ -16,7 +16,16 @@ const makeMesh = (x = 10, y = 10, shadow = true) => {
   return mesh;
 }
 
-export default ({ width = 2 }) => {
+const getWidth = () => {
+  if (window.innerWidth <= 1440) {
+    return map(window.innerWidth, 320, 1440, 2.2, 7);
+  }
+
+  return map(window.innerWidth, 1440, 2560, 7, 8);
+};
+
+export default () => {
+  const width = getWidth();
   const bottom = makeMesh(width+1, 3);
   bottom.position.z = 0;
   bottom.rotation.x = rad(90);
