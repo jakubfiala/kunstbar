@@ -2,7 +2,7 @@ import { MeshStandardMaterial, TextureLoader, SRGBColorSpace, RepeatWrapping } f
 
 import { rad } from '../vercajch.js';
 
-export default () => {
+export default ({ hdri }) => {
   const textureLoader = new TextureLoader();
   const map = textureLoader.load('./img/MetalZincGalvanized001/MetalZincGalvanized001_COL_1K_METALNESS.png');
   const roughnessMap = textureLoader.load('./img/MetalZincGalvanized001/MetalZincGalvanized001_ROUGHNESS_1K_METALNESS.png');
@@ -32,5 +32,6 @@ export default () => {
     roughnessMap,
     normalMap,
     // bumpMap,
+    envMap: hdri,
   });
 }
