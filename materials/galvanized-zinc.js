@@ -2,9 +2,9 @@ import { MeshStandardMaterial, TextureLoader, SRGBColorSpace, RepeatWrapping } f
 
 export default ({ hdri }) => {
   const textureLoader = new TextureLoader();
-  const map = textureLoader.load('./img/zinc/diffuse.png');
-  const roughnessMap = textureLoader.load('./img/zinc/roughness.png');
-  const normalMap = textureLoader.load('./img/zinc/normal.png');
+  const map = textureLoader.load('./img/zinc/diffuse.jpg');
+  const roughnessMap = textureLoader.load('./img/zinc/roughness.jpg');
+  const normalMap = textureLoader.load('./img/zinc/normal.jpg');
 
   [
     map,
