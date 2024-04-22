@@ -56,4 +56,6 @@ async function init() {
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
   };
+
+  hdrResult.dispose();
 };
