@@ -1,12 +1,11 @@
 
-import { Color, EquirectangularReflectionMapping, Scene } from 'three';
+import { ACESFilmicToneMapping, Color, EquirectangularReflectionMapping, Scene } from 'three';
 import { RapierPhysics } from 'three/addons/rapier.js';
-import { RGBELoader } from 'three/addons/rgbe.js';
+import { HDRJPGLoader } from '@monogrid/gainmap-js';
 
 import { RectAreaLightUniformsLib } from './libs/RectAreaUniformsLib.js';
 
 import walls from './walls.js';
-import { rad } from './vercajch.js';
 import lights from './lights.js';
 import bars from './bars.js';
 import createCamera from './camera.js';
@@ -14,15 +13,17 @@ import createRenderer from './renderer.js';
 import createDrawing from './drawing.js';
 import gravityChange from './gravity-change.js';
 
-new RGBELoader()
-  .setPath( 'hdri/' )
-  .load( 'unfinished_office_1k.hdr', (hdri) => init({ hdri }));
-
 createDrawing(document.getElementById('drawing'));
+init();
 
-async function init({ hdri }) {
+async function init() {
+  const renderer = createRenderer();
+
+  const hdrLoader = new HDRJPGLoader(renderer);
+  const hdrResult = await hdrLoader.loadAsync('hdri/unfinished_office_1k.jpg');
+  const hdri = hdrResult.renderTarget.texture;
+
   hdri.mapping = EquirectangularReflectionMapping;
-  hdri.rotation = rad(90);
 
   RectAreaLightUniformsLib.init();
 
@@ -41,8 +42,6 @@ async function init({ hdri }) {
   scene.add(bars({ hdri }));
   physics.addScene(scene);
   lights.addScene(scene);
-
-  const renderer = createRenderer();
 
   const animate = () => {
     requestAnimationFrame(animate);
