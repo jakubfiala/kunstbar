@@ -206,7 +206,7 @@ async function RapierPhysics() {
 
 	// animate
 
-	setInterval( step, 1000 / frameRate );
+	const interval = setInterval( step, 1000 / frameRate );
 
 	return {
 		addScene: addScene,
@@ -214,6 +214,7 @@ async function RapierPhysics() {
 		setMeshPosition: setMeshPosition,
 		setMeshVelocity: setMeshVelocity,
 		gravity,
+		interval,
 	};
 
 }
