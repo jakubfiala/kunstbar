@@ -10,9 +10,9 @@ import lights from './lights.js';
 import createBars from './bars.js';
 import createCamera from './camera.js';
 import createRenderer from './renderer.js';
-import createDrawing from './drawing.js';
+// import createDrawing from './drawing.js';
 
-createDrawing(document.getElementById('drawing'));
+// createDrawing(document.getElementById('drawing'));
 init();
 
 async function init() {

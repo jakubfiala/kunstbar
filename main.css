@@ -15,7 +15,7 @@
 
 @keyframes slide-in {
   from {
-    transform: translateY(-1rem);
+    transform: translateY(25%);
   }
 
   to {
