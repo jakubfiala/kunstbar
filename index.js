@@ -29,7 +29,6 @@ async function init() {
   const physics = await createPhysics();
   const camera = createCamera();
   const scene = new Scene();
-  scene.background = new Color(0xdddddd);
   scene.environment = hdri;
 
   for (const wall of walls()) {

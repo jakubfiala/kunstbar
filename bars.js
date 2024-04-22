@@ -9,10 +9,10 @@ export default ({ hdri }) => {
   const material = galvanizedZinc({ hdri });
   const matrix = new Matrix4();
   const boxScale = aspect === PORTRAIT ? 2.5 : 3.3;
-  const boxCount = aspect === PORTRAIT ? 60 : 100;
+  const boxCount = aspect === PORTRAIT ? 60 : 80;
   const geometryBox = new BoxGeometry(boxScale * 0.2, boxScale * 0.5, boxScale * 0.09);
   const bars = new InstancedMesh(geometryBox, material, boxCount);
-  bars.instanceMatrix.setUsage(DynamicDrawUsage); // will be updated every frame
+  bars.instanceMatrix.setUsage(DynamicDrawUsage);
   bars.castShadow = true;
   bars.receiveShadow = true;
 
@@ -21,7 +21,6 @@ export default ({ hdri }) => {
       ? Math.random() * 1 - 0.5
       : Math.random() * 3 - 1.5;
     matrix.setPosition(boxX, Math.random() * 22 + 2, 0);
-    // matrix.setPosition(Math.random() * 0.95 - 0.5, Math.random() * 10 + 5, Math.random() * 0.05 - 0.0025);
     bars.setMatrixAt(i, matrix);
   }
 

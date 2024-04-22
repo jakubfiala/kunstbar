@@ -109,5 +109,11 @@ export default async function createPhysics() {
     gravity.y = G;
   });
 
+	document.addEventListener('scroll', () => {
+		console.log('scroll');
+    gravity.x = 0;
+    gravity.y = G;
+  });
+
 	return { addMesh };
 }
