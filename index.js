@@ -3,7 +3,7 @@ import { LinearToneMapping, Color, EquirectangularReflectionMapping, Scene } fro
 import { HDRJPGLoader } from '@monogrid/gainmap-js';
 
 import { RectAreaLightUniformsLib } from './rect-area-uniforms.js';
-import { RapierPhysics } from './physics.js';
+import createPhysics from './physics.js';
 
 import walls from './walls.js';
 import lights from './lights.js';
@@ -11,7 +11,6 @@ import createBars from './bars.js';
 import createCamera from './camera.js';
 import createRenderer from './renderer.js';
 import createDrawing from './drawing.js';
-import gravityChange from './gravity-change.js';
 
 createDrawing(document.getElementById('drawing'));
 init();
@@ -28,9 +27,7 @@ async function init() {
 
   RectAreaLightUniformsLib.init();
 
-  const physics = await RapierPhysics();
-  gravityChange(physics);
-
+  const physics = await createPhysics();
   const camera = createCamera();
   const scene = new Scene();
   scene.background = new Color(0xdddddd);
