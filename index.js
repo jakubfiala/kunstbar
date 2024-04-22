@@ -1,7 +1,8 @@
 
 import { LinearToneMapping, Color, EquirectangularReflectionMapping, Scene } from 'three';
-import { RapierPhysics } from 'three/addons/rapier.js';
 import { HDRJPGLoader } from '@monogrid/gainmap-js';
+
+import { RapierPhysics } from './addons/rapier.js';
 
 import { RectAreaLightUniformsLib } from './libs/RectAreaUniformsLib.js';
 

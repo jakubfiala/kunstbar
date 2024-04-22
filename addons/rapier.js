@@ -1,7 +1,5 @@
 import { Clock, Vector3, Quaternion, Matrix4 } from 'three';
 
-const RAPIER_PATH = 'https://cdn.skypack.dev/@dimforge/rapier3d-compat@0.12.0';
-
 const frameRate = 60;
 
 const _scale = new Vector3( 1, 1, 1 );
@@ -38,7 +36,7 @@ async function RapierPhysics() {
 
 	if ( RAPIER === null ) {
 
-		RAPIER = await import( RAPIER_PATH );
+		RAPIER = await import('@dimforge/rapier3d-compat');
 		await RAPIER.init();
 
 	}

@@ -1,0 +1,29 @@
+{
+  "name": "kunstbar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakubfiala/kunstbar.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jakubfiala/kunstbar/issues"
+  },
+  "homepage": "https://github.com/jakubfiala/kunstbar#readme",
+  "devDependencies": {
+    "@dimforge/rapier3d-compat": "^0.12.0",
+    "@monogrid/gainmap-js": "^3.0.5",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "atrament": "^4.1.0",
+    "rollup": "^4.16.1",
+    "three": "^0.163.0"
+  }
+}
