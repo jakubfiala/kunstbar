@@ -2,13 +2,12 @@
 import { LinearToneMapping, Color, EquirectangularReflectionMapping, Scene } from 'three';
 import { HDRJPGLoader } from '@monogrid/gainmap-js';
 
-import { RapierPhysics } from './addons/rapier.js';
-
-import { RectAreaLightUniformsLib } from './libs/RectAreaUniformsLib.js';
+import { RectAreaLightUniformsLib } from './rect-area-uniforms.js';
+import { RapierPhysics } from './physics.js';
 
 import walls from './walls.js';
 import lights from './lights.js';
-import bars from './bars.js';
+import createBars from './bars.js';
 import createCamera from './camera.js';
 import createRenderer from './renderer.js';
 import createDrawing from './drawing.js';
@@ -39,10 +38,12 @@ async function init() {
 
   for (const wall of walls()) {
     scene.add(wall);
+    physics.addMesh(wall);
   }
 
-  scene.add(bars({ hdri }));
-  physics.addScene(scene);
+  const bars = createBars({ hdri });
+  scene.add(bars);
+  physics.addMesh(bars, 0.2, 0.1);
   lights.addScene(scene);
 
   const animate = () => {

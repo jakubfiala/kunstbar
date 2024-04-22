@@ -11,8 +11,6 @@ const material = new MeshBasicMaterial({ transparent: true, opacity: 0 });
 const makeMesh = (x = 10, y = 10) => {
   const geometry = new BoxGeometry(x, y, WALL_THICKNESS);
   const mesh = new Mesh(geometry, material);
-
-  mesh.userData.physics = { mass: 0 };
   mesh.castShadow = false;
   mesh.receiveShadow = false;
 

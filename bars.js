@@ -15,7 +15,6 @@ export default ({ hdri }) => {
   bars.instanceMatrix.setUsage(DynamicDrawUsage); // will be updated every frame
   bars.castShadow = true;
   bars.receiveShadow = true;
-  bars.userData.physics = { mass: 0.2, restitution: 0.1 };
 
   for (let i = 0; i < bars.count; i++) {
     const boxX = aspect === PORTRAIT
