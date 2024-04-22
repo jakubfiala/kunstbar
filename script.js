@@ -1,5 +1,5 @@
 
-import { ACESFilmicToneMapping, Color, EquirectangularReflectionMapping, Scene } from 'three';
+import { LinearToneMapping, Color, EquirectangularReflectionMapping, Scene } from 'three';
 import { RapierPhysics } from 'three/addons/rapier.js';
 import { HDRJPGLoader } from '@monogrid/gainmap-js';
 
@@ -18,6 +18,7 @@ init();
 
 async function init() {
   const renderer = createRenderer();
+  renderer.toneMapping = LinearToneMapping;
 
   const hdrLoader = new HDRJPGLoader(renderer);
   const hdrResult = await hdrLoader.loadAsync('hdri/unfinished_office_1k.jpg');
