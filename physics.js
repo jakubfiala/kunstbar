@@ -94,26 +94,14 @@ export default async function createPhysics() {
 
 	setInterval(step, 1000 / FRAME_RATE);
 
-	document.getElementById('g-change-left').addEventListener('click', () => {
-    gravity.x = -(G - 2);
-    gravity.y = 2;
-  });
-
-  document.getElementById('g-change-right').addEventListener('click', () => {
-    gravity.x = (G - 2);
-    gravity.y = 2;
-  });
-
-  document.getElementById('g-change-top').addEventListener('click', () => {
+	const gUp = () => {
+		document.getElementById('bars').classList.add('bars--hidden');
     gravity.x = 0;
-    gravity.y = G;
-  });
+    gravity.y = G/2;
+  };
 
-	document.addEventListener('scroll', () => {
-		console.log('scroll');
-    gravity.x = 0;
-    gravity.y = G;
-  });
+	document.addEventListener('scroll', gUp, { once: true });
+	document.getElementById('bars').addEventListener('click', gUp);
 
 	return { addMesh };
 }

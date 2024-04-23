@@ -41,7 +41,7 @@ header {
 }
 
 .logo {
-  animation: fade-in 700ms 2s both, slide-in 700ms 2s both;
+  animation: fade-in 1s 2s both, slide-in 1s 2s both;
   position: relative;
   z-index: 1;
   margin: 1rem;
@@ -62,12 +62,15 @@ main {
   min-height: 200vh;
 }
 
-canvas {
-  cursor: crosshair;
+.bars {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 2;
+}
+
+.bars--hidden {
+  pointer-events: none;
 }
 
 @media screen and (min-width: 768px) {

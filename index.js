@@ -6,7 +6,7 @@ import createRectAreaUniforms from './rect-area-uniforms.js';
 import createPhysics from './physics.js';
 
 import walls from './walls.js';
-import lights from './lights.js';
+// import lights from './lights.js';
 import createBars from './bars.js';
 import createCamera from './camera.js';
 import createRenderer from './renderer.js';
@@ -20,7 +20,7 @@ async function init() {
   renderer.toneMapping = LinearToneMapping;
 
   const hdrLoader = new HDRJPGLoader(renderer);
-  const hdrResult = await hdrLoader.loadAsync('hdri/unfinished_office_1k.jpg');
+  const hdrResult = await hdrLoader.loadAsync('hdri/abandoned_hall_01_1k.jpg');
   const hdri = hdrResult.renderTarget.texture;
   hdri.mapping = EquirectangularReflectionMapping;
 
@@ -38,8 +38,8 @@ async function init() {
 
   const bars = createBars({ hdri });
   scene.add(bars);
-  physics.addMesh(bars, 0.2, 0.1);
-  lights.addScene(scene);
+  physics.addMesh(bars, 0.2, 0);
+  // lights.addScene(scene);
 
   const animate = () => {
     requestAnimationFrame(animate);

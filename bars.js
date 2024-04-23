@@ -1,12 +1,12 @@
 import { Matrix4, DynamicDrawUsage, BoxGeometry, InstancedMesh } from 'three';
-import galvanizedZinc from './materials/galvanized-zinc.js';
+import mirror from './materials/mirror.js';
 
 const PORTRAIT = 0;
 const LANDSCAPE = 1;
 const aspect = window.innerWidth >= window.innerHeight ? LANDSCAPE : PORTRAIT;
 
 export default ({ hdri }) => {
-  const material = galvanizedZinc({ hdri });
+  const material = mirror({ hdri });
   const matrix = new Matrix4();
   const boxScale = aspect === PORTRAIT ? 2.5 : 3.3;
   const boxCount = aspect === PORTRAIT ? 60 : 80;
