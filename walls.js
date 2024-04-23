@@ -19,7 +19,7 @@ const makeMesh = (x = 10, y = 10) => {
 
 const getWidth = () => {
   if (window.innerWidth <= 1200) {
-    return map(window.innerWidth, 320, 1200, 2.2, 7);
+    return map(window.innerWidth, 320, 1200, 2.5, 7);
   }
 
   if (window.innerWidth <= 1440) {
