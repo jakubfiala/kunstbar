@@ -38,7 +38,7 @@ async function init() {
 
   const bars = createBars({ hdri });
   scene.add(bars);
-  physics.addMesh(bars, 0.2, 0);
+  physics.addMesh(bars, 1, 0);
   // lights.addScene(scene);
 
   const animate = () => {

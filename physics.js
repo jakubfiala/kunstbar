@@ -1,8 +1,8 @@
-import { Clock, Vector3, Quaternion, Matrix4 } from 'three';
+import { Vector3, Quaternion, Matrix4 } from 'three';
 import { World, RigidBodyDesc, ColliderDesc, init } from '@dimforge/rapier3d-compat';
 
 const G = 9.81;
-const FRAME_RATE = 30;
+const FRAME_RATE = 60;
 const _scale = new Vector3(1, 1, 1);
 
 export default async function createPhysics() {
@@ -61,10 +61,11 @@ export default async function createPhysics() {
 		return body;
 	}
 
-	const clock = new Clock();
-
 	function step() {
-		world.timestep = clock.getDelta();
+		if (document.visibilityState === 'hidden') {
+			return;
+		}
+
 		world.step();
 
 		for (let i = 0, l = meshes.length; i < l; i++) {
