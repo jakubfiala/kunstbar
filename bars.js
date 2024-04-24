@@ -18,7 +18,7 @@ export default ({ hdri }) => {
   const material = mirror({ hdri });
   const matrix = new Matrix4();
   const boxScale = aspect === PORTRAIT ? 2.5 : 3.3;
-  const boxCount = aspect === PORTRAIT ? 60 : 80;
+  const boxCount = aspect === PORTRAIT ? 70 : 100;
   const geometryBox = new BoxGeometry(boxScale * 0.2, boxScale * 0.5, boxScale * 0.09);
   console.log(BufferAttribute);
   console.log(geometryBox);

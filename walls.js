@@ -36,6 +36,11 @@ export default () => {
   bottom.position.z = 0;
   bottom.rotation.x = rad(90);
 
+  const top = makeMesh(width + 1, WALL_DEPTH + 1);
+  top.position.z = 0;
+  top.rotation.x = rad(90);
+  top.position.y = 20;
+
   const left = makeMesh(WALL_DEPTH, WALL_HEIGHT);
   left.position.x = -(width/2);
   left.position.y = 10;
@@ -61,6 +66,7 @@ export default () => {
   front.rotation.x = rad(0);
 
   return [
+    top,
     bottom,
     left,
     right,

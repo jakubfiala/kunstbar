@@ -100,13 +100,26 @@ export default async function createPhysics() {
 	setInterval(step, 1000 / FRAME_RATE);
 
 	const gUp = () => {
-		instancedBodies.forEach((bodies) => bodies.forEach((body) => {
-			if (Math.random() > 0.3) {
-				body.setGravityScale(0);
-				body.applyImpulse(new Vector3(0, 20, 0));
-			}
-		}));
+		// instancedBodies.forEach((bodies) => bodies.forEach((body) => {
+		// 	if (Math.random() > 0.3) {
+		// 		body.setGravityScale(0);
+		// 		body.applyImpulse(new Vector3(0, 20, 0));
+		// 	}
+		// }));
+		gravity.x = 0;
+		gravity.y = G;
   };
 
-	return { addMesh, gUp };
+	const gDown = () => {
+		// instancedBodies.forEach((bodies) => bodies.forEach((body) => {
+		// 	if (Math.random() > 0.3) {
+		// 		body.setGravityScale(0);
+		// 		body.applyImpulse(new Vector3(0, 20, 0));
+		// 	}
+		// }));
+		gravity.x = 0;
+		gravity.y = -G;
+  };
+
+	return { addMesh, gUp, gDown };
 }

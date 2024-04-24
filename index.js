@@ -56,14 +56,36 @@ async function init() {
   hdrResult.dispose();
 
   const gUp = () => {
+    console.log('gup');
     physics.gUp();
     document.getElementById('bars').classList.add('bars--hidden');
+    document.getElementById('header').classList.add('header--collapsed');
+    document.getElementById('main').classList.add('main--visible');
   }
 
   document.addEventListener('scroll', gUp, { once: true });
 	document.getElementById('bars').addEventListener('click', gUp);
 
   const drawing = createDrawing(document.getElementById('drawing'));
+
+  const drawingIO = new IntersectionObserver((entries) => {
+    if (entries.some(({ isIntersecting }) => isIntersecting)) {
+      console.log('gdown', entries);
+      physics.gDown();
+      document.getElementById('bars').classList.add('bars--behind');
+    }
+  }, { threshold: 0.75 });
+
+  drawingIO.observe(document.getElementById('drawing-section'));
+
+  // const blueIO = new IntersectionObserver((entries) => {
+  //   if (entries.some(({ isIntersecting }) => isIntersecting)) {
+  //     physics.gUp();
+  //     document.getElementById('bars').classList.remove('bars--behind');
+  //   }
+  // }, { threshold: 0.75 });
+
+  // blueIO.observe(document.getElementById('blue-section'));
 
   drawing.addEventListener('strokeend', () => bars.material.map.needsUpdate = true);
 };
