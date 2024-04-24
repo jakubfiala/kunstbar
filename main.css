@@ -55,11 +55,16 @@ body {
 }
 
 .header--collapsed {
-  height: auto;
+  height: 0;
   justify-content: start;
-  padding: 2rem 3rem;
-  position: fixed;
+  padding: 0 3rem;
+  position: sticky;
   top: 0;
+  z-index: 2;
+}
+
+.header--inverse {
+  color: white;
 }
 
 .logo {
@@ -72,6 +77,7 @@ body {
 .header--collapsed .logo {
   animation: fade-in 500ms 500ms both;
   width: 225px;
+  margin-top: 8rem;
 }
 
 .main {
@@ -106,9 +112,26 @@ section {
 .section--blue {
   color: white;
   background: #1262DB;
-  z-index: 0;
+  z-index: 2;
   position: relative;
   justify-content: start;
+}
+
+.sticky-section-header {
+  height: auto;
+  justify-content: start;
+  padding: 2rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+.sticky-section-header .logo {
+  width: 225px;
+}
+
+.section--white {
+  background: white;
 }
 
 @media screen and (min-width: 768px) {
@@ -139,7 +162,7 @@ section {
 }
 
 #drawing {
-  border: dashed 2px black;
+  border: solid 2px black;
   cursor: crosshair;
   max-width: calc(100vw - 2rem);
   mix-blend-mode: overlay;
@@ -168,4 +191,38 @@ section {
 
 .swatch--selected {
   border: solid 2px black;
+}
+
+.comingsoon {
+  background: #DD01A3;
+  color: white;
+  width: 100%;
+  max-width: 900px;
+  padding: 2rem;
+  font-size: 1rem;
+}
+
+.comingsoon__title {
+  font-size: 2rem;
+  margin: 0 0 4rem;
+}
+
+.comingsoon__info {
+  display: grid;
+  gap: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .comingsoon__info {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.comingsoon__info p {
+  margin: 0;
+}
+
+.comingsoon a,
+.comingsoon a:visited {
+  color: white;
 }

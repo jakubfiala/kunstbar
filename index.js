@@ -79,11 +79,13 @@ async function init() {
   drawingIO.observe(document.getElementById('drawing-section'));
 
   // const blueIO = new IntersectionObserver((entries) => {
-  //   if (entries.some(({ isIntersecting }) => isIntersecting)) {
-  //     physics.gUp();
-  //     document.getElementById('bars').classList.remove('bars--behind');
+  //   const entry = entries.find(({ isIntersecting }) => isIntersecting);
+  //   if (entry) {
+  //     document.getElementById('header').classList.add('header--inverse');
+  //   } else if (entry) {
+  //     document.getElementById('header').classList.remove('header--inverse');
   //   }
-  // }, { threshold: 0.75 });
+  // }, { threshold: 0.9 });
 
   // blueIO.observe(document.getElementById('blue-section'));
 
