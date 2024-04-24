@@ -1,9 +1,18 @@
-import { Matrix4, DynamicDrawUsage, BoxGeometry, InstancedMesh } from 'three';
+import { Matrix4, DynamicDrawUsage, BoxGeometry, InstancedMesh, BufferAttribute } from 'three';
 import mirror from './materials/mirror.js';
 
 const PORTRAIT = 0;
 const LANDSCAPE = 1;
 const aspect = window.innerWidth >= window.innerHeight ? LANDSCAPE : PORTRAIT;
+
+const uv = [
+  0,0,0,1,1,0,1,1, // lr
+  0,0,0,1,1,0,1,1, // lr
+  0,0,1,0,0,1,1,1, // tb
+  0,0,1,0,0,1,1,1, // tb
+  0,0,0,1,1,0,1,1, // front
+  0,0,0,1,1,0,1,1, // back
+];
 
 export default ({ hdri }) => {
   const material = mirror({ hdri });
@@ -11,6 +20,10 @@ export default ({ hdri }) => {
   const boxScale = aspect === PORTRAIT ? 2.5 : 3.3;
   const boxCount = aspect === PORTRAIT ? 60 : 80;
   const geometryBox = new BoxGeometry(boxScale * 0.2, boxScale * 0.5, boxScale * 0.09);
+  console.log(BufferAttribute);
+  console.log(geometryBox);
+  geometryBox.setAttribute('uv', new BufferAttribute(Float32Array.from(uv), 2));
+
   const bars = new InstancedMesh(geometryBox, material, boxCount);
   bars.instanceMatrix.setUsage(DynamicDrawUsage);
   bars.castShadow = true;

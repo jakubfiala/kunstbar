@@ -7,6 +7,7 @@ export default () => {
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = PCFSoftShadowMap;
   renderer.toneMapping = ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 4;
 
   return renderer;
 }

@@ -1,7 +1,7 @@
 import { DirectionalLight, RectAreaLight } from 'three';
 
 const addDirectionalLight = (scene) => {
-  const dirLight = new DirectionalLight(0xffffff, 50);
+  const dirLight = new DirectionalLight(0xffffff, 100);
   dirLight.position.set(-3, 8, 3);
   dirLight.castShadow = true;
   dirLight.shadow.camera.zoom = 2;

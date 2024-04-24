@@ -18,6 +18,8 @@ export default async function createPhysics() {
 	const _quaternion = new Quaternion();
 	const _matrix = new Matrix4();
 
+	const instancedBodies = [];
+
 	function addMesh(mesh, mass = 0) {
 		const { geometry: { parameters } } = mesh;
 		const sx = parameters.width !== undefined ? parameters.width / 2 : 0.5;
@@ -46,6 +48,8 @@ export default async function createPhysics() {
 			const position = _vector.fromArray(array, i * 16 + 12);
 			bodies.push(createBody(position, null, mass, shape));
 		}
+
+		instancedBodies.push(bodies);
 
 		return bodies;
 	}
@@ -96,13 +100,13 @@ export default async function createPhysics() {
 	setInterval(step, 1000 / FRAME_RATE);
 
 	const gUp = () => {
-		document.getElementById('bars').classList.add('bars--hidden');
-    gravity.x = 0;
-    gravity.y = G/2;
+		instancedBodies.forEach((bodies) => bodies.forEach((body) => {
+			if (Math.random() > 0.3) {
+				body.setGravityScale(0);
+				body.applyImpulse(new Vector3(0, 20, 0));
+			}
+		}));
   };
 
-	document.addEventListener('scroll', gUp, { once: true });
-	document.getElementById('bars').addEventListener('click', gUp);
-
-	return { addMesh };
+	return { addMesh, gUp };
 }

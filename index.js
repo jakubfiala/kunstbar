@@ -10,9 +10,8 @@ import walls from './walls.js';
 import createBars from './bars.js';
 import createCamera from './camera.js';
 import createRenderer from './renderer.js';
-// import createDrawing from './drawing.js';
+import createDrawing from './drawing.js';
 
-// createDrawing(document.getElementById('drawing'));
 init();
 
 async function init() {
@@ -20,7 +19,7 @@ async function init() {
   renderer.toneMapping = LinearToneMapping;
 
   const hdrLoader = new HDRJPGLoader(renderer);
-  const hdrResult = await hdrLoader.loadAsync('hdri/abandoned_hall_01_1k.jpg');
+  const hdrResult = await hdrLoader.loadAsync('hdri/GSG_HC015_A021_Showroom_01_2k.jpg');
   const hdri = hdrResult.renderTarget.texture;
   hdri.mapping = EquirectangularReflectionMapping;
 
@@ -55,4 +54,16 @@ async function init() {
   };
 
   hdrResult.dispose();
+
+  const gUp = () => {
+    physics.gUp();
+    document.getElementById('bars').classList.add('bars--hidden');
+  }
+
+  document.addEventListener('scroll', gUp, { once: true });
+	document.getElementById('bars').addEventListener('click', gUp);
+
+  const drawing = createDrawing(document.getElementById('drawing'));
+
+  drawing.addEventListener('strokeend', () => bars.material.map.needsUpdate = true);
 };
