@@ -152,6 +152,7 @@ section {
   top: 0;
   left: 0;
   z-index: 2;
+  cursor: pointer;
 }
 
 .bars--hidden {

@@ -12,7 +12,7 @@ import createCamera from './camera.js';
 import createRenderer from './renderer.js';
 import createDrawing from './drawing.js';
 
-init();
+setTimeout(init, 500);
 
 async function init() {
   const renderer = createRenderer();
