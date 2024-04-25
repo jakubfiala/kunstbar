@@ -1,10 +1,16 @@
 import Atrament from 'atrament';
 
-export default (canvas) => {
-  canvas.width = 500;
-  canvas.height = 200;
+const SCALE = 1.5;
 
-  const atrament = new Atrament(canvas);
+export default (canvas) => {
+  canvas.width = 500 * SCALE;
+  canvas.height = 200 * SCALE;
+
+  const atrament = new Atrament(canvas, {
+    width: canvas.offsetWidth,
+    height: canvas.offsetHeight,
+  });
+
   atrament.color = '#F3F417';
   atrament.weight = 10;
 

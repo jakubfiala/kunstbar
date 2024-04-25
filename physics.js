@@ -2,7 +2,7 @@ import { Vector3, Quaternion, Matrix4 } from 'three';
 import { World, RigidBodyDesc, ColliderDesc, init } from '@dimforge/rapier3d-compat';
 
 const G = 9.81;
-const FRAME_RATE = 60;
+const FRAME_RATE = 50;
 const _scale = new Vector3(1, 1, 1);
 
 export default async function createPhysics() {

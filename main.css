@@ -68,6 +68,7 @@ body {
 }
 
 .logo {
+  animation: fade-in 500ms 400ms both, slide-in 500ms 400ms both;
   position: relative;
   z-index: 1;
   width: 480px;
@@ -76,7 +77,7 @@ body {
 
 .header--collapsed .logo {
   animation: fade-in 500ms 500ms both;
-  width: 225px;
+  width: 112px;
   margin-top: 8rem;
 }
 
@@ -127,7 +128,7 @@ section {
 }
 
 .sticky-section-header .logo {
-  width: 225px;
+  width: 112px;
 }
 
 .section--white {
@@ -169,8 +170,11 @@ section {
 }
 
 .drawing-widget p {
+  border: solid 2px black;
   font-size: 1rem;
-  margin: 0.5rem 0;
+  padding: 0.25rem 0.5rem;
+  border-bottom: none;
+  margin: 0;
   background: white;
 }
 
