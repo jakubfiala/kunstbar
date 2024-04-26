@@ -8,7 +8,7 @@ const _scale = new Vector3(1, 1, 1);
 export default async function createPhysics() {
 	await init();
 
-	const gravity = new Vector3(0.0, - 9.81, 0.0);
+	const gravity = new Vector3(0.0, -9.81, 0.0);
 	const world = new World(gravity);
 
 	const meshes = [];
@@ -95,27 +95,23 @@ export default async function createPhysics() {
 
 	setInterval(step, 1000 / FRAME_RATE);
 
+	const wakeBarsUp = () => instancedBodies[0].forEach(body => {
+		if (body.isSleeping()) {
+			body.wakeUp();
+		}
+	});
+
 	const gUp = () => {
-		// instancedBodies.forEach((bodies) => bodies.forEach((body) => {
-		// 	if (Math.random() > 0.3) {
-		// 		body.setGravityScale(0);
-		// 		body.applyImpulse(new Vector3(0, 20, 0));
-		// 	}
-		// }));
-		gravity.x = 0;
+		wakeBarsUp();
 		gravity.y = G;
   };
 
 	const gDown = () => {
-		// instancedBodies.forEach((bodies) => bodies.forEach((body) => {
-		// 	if (Math.random() > 0.3) {
-		// 		body.setGravityScale(0);
-		// 		body.applyImpulse(new Vector3(0, 20, 0));
-		// 	}
-		// }));
-		gravity.x = 0;
+		wakeBarsUp();
 		gravity.y = -G;
   };
+
+	window.instancedBodies = instancedBodies;
 
 	return { addMesh, gUp, gDown };
 }

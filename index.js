@@ -6,7 +6,6 @@ import createRectAreaUniforms from './rect-area-uniforms.js';
 import createPhysics from './physics.js';
 
 import walls from './walls.js';
-// import lights from './lights.js';
 import createBars from './bars.js';
 import createCamera from './camera.js';
 import createRenderer from './renderer.js';
@@ -38,7 +37,6 @@ async function init() {
   const bars = createBars({ hdri });
   scene.add(bars);
   physics.addMesh(bars, 1, 0);
-  // lights.addScene(scene);
 
   const animate = () => {
     requestAnimationFrame(animate);
@@ -56,7 +54,6 @@ async function init() {
   hdrResult.dispose();
 
   const gUp = () => {
-    console.log('gup');
     physics.gUp();
     document.getElementById('bars').classList.add('bars--hidden');
     document.getElementById('header').classList.add('header--collapsed');
@@ -64,13 +61,12 @@ async function init() {
   }
 
   document.addEventListener('scroll', gUp, { once: true });
-	document.getElementById('bars').addEventListener('click', gUp);
+	document.getElementById('bars').addEventListener('click', gUp, { once: true });
 
   const drawing = createDrawing(document.getElementById('drawing'));
 
   const drawingIO = new IntersectionObserver((entries) => {
     if (entries.some(({ isIntersecting }) => isIntersecting)) {
-      console.log('gdown', entries);
       physics.gDown();
       document.getElementById('bars').classList.add('bars--behind');
     }
@@ -82,10 +78,8 @@ async function init() {
     const entry = entries.find(({ isIntersecting }) => isIntersecting);
     if (entry) {
       document.body.classList.add('body--blue');
-      console.log('gUp blue');
       physics.gUp();
     } else {
-      console.log('gDown blue');
       document.body.classList.remove('body--blue');
       physics.gDown();
     }
