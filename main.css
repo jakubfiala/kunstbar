@@ -129,6 +129,13 @@ section {
   z-index: 2;
   position: relative;
   justify-content: start;
+  opacity: 0;
+  height: auto;
+  transition: opacity 500ms 1s;
+}
+
+.section--blue-visible {
+  opacity: 1;
 }
 
 @media screen and (min-width: 1024px) {
@@ -138,8 +145,8 @@ section {
     gap: 3rem;
   }
 
-  .section--blue .left {
-    margin-top: 8rem;
+  .section--blue h2 {
+    margin-top: 0;
   }
 }
 
