@@ -66,10 +66,6 @@ export default async function createPhysics() {
 	}
 
 	function step() {
-		if (document.visibilityState === 'hidden') {
-			return;
-		}
-
 		world.step();
 
 		for (let i = 0, l = meshes.length; i < l; i++) {
