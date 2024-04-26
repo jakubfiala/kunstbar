@@ -43,6 +43,7 @@ html, body {
 body {
   width: 100vw;
   position: relative;
+  transition: background-color 500ms;
 }
 
 .header {
@@ -73,6 +74,7 @@ body {
   z-index: 1;
   width: 480px;
   max-width: calc(100vw - 2rem);
+  transition: color 500ms;
 }
 
 .header--collapsed .logo {
@@ -112,10 +114,17 @@ section {
 
 .section--blue {
   color: white;
-  background: #1262DB;
   z-index: 2;
   position: relative;
   justify-content: start;
+}
+
+.body--blue {
+  background: #1262DB;
+}
+
+.body--blue .logo {
+  color: white;
 }
 
 .sticky-section-header {
@@ -167,7 +176,8 @@ section {
   border: solid 2px black;
   cursor: crosshair;
   max-width: calc(100vw - 2rem);
-  mix-blend-mode: overlay;
+  width: 750px;
+  aspect-ratio: 5 / 2;
 }
 
 .drawing-widget p {

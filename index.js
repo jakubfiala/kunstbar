@@ -78,16 +78,20 @@ async function init() {
 
   drawingIO.observe(document.getElementById('drawing-section'));
 
-  // const blueIO = new IntersectionObserver((entries) => {
-  //   const entry = entries.find(({ isIntersecting }) => isIntersecting);
-  //   if (entry) {
-  //     document.getElementById('header').classList.add('header--inverse');
-  //   } else if (entry) {
-  //     document.getElementById('header').classList.remove('header--inverse');
-  //   }
-  // }, { threshold: 0.9 });
+  const blueIO = new IntersectionObserver((entries) => {
+    const entry = entries.find(({ isIntersecting }) => isIntersecting);
+    if (entry) {
+      document.body.classList.add('body--blue');
+      console.log('gUp blue');
+      physics.gUp();
+    } else {
+      console.log('gDown blue');
+      document.body.classList.remove('body--blue');
+      physics.gDown();
+    }
+  }, { threshold: 0.5 });
 
-  // blueIO.observe(document.getElementById('blue-section'));
+  blueIO.observe(document.getElementById('blue-section'));
 
   drawing.addEventListener('strokeend', () => bars.material.map.needsUpdate = true);
 };

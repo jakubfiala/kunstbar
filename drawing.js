@@ -1,11 +1,6 @@
 import Atrament from 'atrament';
 
-const SCALE = 1.5;
-
 export default (canvas) => {
-  canvas.width = 500 * SCALE;
-  canvas.height = 200 * SCALE;
-
   const atrament = new Atrament(canvas, {
     width: canvas.offsetWidth,
     height: canvas.offsetHeight,
