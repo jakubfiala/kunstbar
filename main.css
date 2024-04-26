@@ -23,6 +23,10 @@
   }
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html {
   font-family: 'DejaVu Sans', sans-serif;
   font-size: 16px;
@@ -42,6 +46,8 @@ html, body {
 
 body {
   width: 100vw;
+  height: auto;
+  overflow-x: hidden;
   position: relative;
   transition: background-color 500ms;
 }
@@ -127,19 +133,6 @@ section {
   color: white;
 }
 
-.sticky-section-header {
-  height: auto;
-  justify-content: start;
-  padding: 2rem 0;
-  position: sticky;
-  top: 0;
-  z-index: 3;
-}
-
-.sticky-section-header .logo {
-  width: 112px;
-}
-
 .section--white {
   background: white;
 }
@@ -162,6 +155,7 @@ section {
   left: 0;
   z-index: 2;
   cursor: pointer;
+  width: 100vw;
 }
 
 .bars--hidden {
@@ -172,12 +166,19 @@ section {
   z-index: 1;
 }
 
+.drawing-widget {
+  position: relative;
+  max-width: 100vw;
+  padding: 0 0.5rem;
+}
+
 #drawing {
   border: solid 2px black;
   cursor: crosshair;
-  max-width: calc(100vw - 2rem);
+  max-width: calc(100vw - 1rem);
   width: 750px;
   aspect-ratio: 5 / 2;
+  display: block;
 }
 
 .drawing-widget p {
@@ -186,15 +187,31 @@ section {
   padding: 0.25rem 0.5rem;
   border-bottom: none;
   margin: 0;
-  background: white;
 }
 
-.swatches {
+.drawing-widget p,
+.drawing__controls {
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(20px);
+}
+
+.drawing__controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 0.5rem;
+  border: solid 2px black;
+  border-top: none;
+}
+
+.swatches,
+.weights {
   list-style-type: none;
   display: flex;
   padding: 0;
   margin: 0.5rem 0;
   align-items: center;
+  max-width: 100%;
 }
 
 .swatch {
@@ -202,10 +219,50 @@ section {
   width: 4rem;
   height: 1.5rem;
   background-color: var(--bg-color);
+  flex-shrink: 1;
+}
+
+.swatch--eraser {
+  background: white;
+  position: relative;
+  margin-left: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swatch--eraser svg {
+  height: 100%;
 }
 
 .swatch--selected {
   border: solid 2px black;
+}
+
+.weights {
+  gap: 0.5rem;
+}
+
+.weight {
+  background: black;
+  border: solid 2px white;
+  border-radius: var(--size);
+  color: black;
+  cursor: pointer;
+  height: var(--size);
+  width: var(--size);
+  font-size: calc(var(--size) - 2px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.weight::after {
+  content: '✓';
+}
+
+.weight--selected {
+  color: white;
 }
 
 .comingsoon {

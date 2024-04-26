@@ -7,7 +7,7 @@ export default (canvas) => {
   });
 
   atrament.color = '#F3F417';
-  atrament.weight = 10;
+  atrament.weight = 20;
 
   const context = canvas.getContext('2d');
   context.fillStyle = 'white';
@@ -22,7 +22,18 @@ export default (canvas) => {
 
     atrament.color = swatch.getAttribute('data-color');
     swatch.classList.toggle('swatch--selected');
-  }))
+  }));
+
+  const weights = Array.from(document.getElementsByClassName('weight'));
+
+  weights.forEach((weight) => weight.addEventListener('click', () => {
+    weights
+      .find((s) => s.classList.contains('weight--selected'))
+      ?.classList.remove('weight--selected');
+
+    atrament.weight = parseInt(weight.getAttribute('data-weight'), 10);
+    weight.classList.toggle('weight--selected');
+  }));
 
   return atrament;
 };
