@@ -246,7 +246,6 @@ section {
 
 .weight {
   background: black;
-  border: solid 2px white;
   border-radius: var(--size);
   color: black;
   cursor: pointer;
