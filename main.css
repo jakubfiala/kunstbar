@@ -252,7 +252,7 @@ section {
   cursor: pointer;
   height: var(--size);
   width: var(--size);
-  font-size: calc(var(--size) - 2px);
+  font-size: calc(var(--size) - 6px);
   display: flex;
   justify-content: center;
   align-items: center;
