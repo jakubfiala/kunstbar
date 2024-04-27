@@ -197,7 +197,7 @@ section {
 
 #drawing {
   border: solid 2px black;
-  cursor: crosshair;
+  cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAuElEQVQ4T2NkoBJgpJI5DOQYlAC03B+IE4H4A8whpBoUANS4Hqr5ApB2hBlGikEKUE0HgLQ+1LCFQBrkQqK9BlI8H+qdDUAaZlggkA3iE2UQzBBYcIDCBqTZAWYIMQahGwIzTBHIeADjEDIIlyEgFy1ANgSfQSQZgssgkg3BZhBZhqAbRLYh6AaB0oY9WiBiDVj0gCZkENGGoBs0AShgALUNFL0YUYzNJTAxUvIaPnOIyiJ4DYBJAgCvHCETgF+a4gAAAABJRU5ErkJggg==) 0 18, crosshair;
   max-width: calc(100vw - 1rem);
   width: 750px;
   aspect-ratio: 5 / 2;
