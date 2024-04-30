@@ -1,8 +1,8 @@
-import { DirectionalLight, RectAreaLight } from 'three';
+import { AmbientLight, DirectionalLight, RectAreaLight } from 'three';
 
 const addDirectionalLight = (scene) => {
-  const dirLight = new DirectionalLight(0xffffff, 100);
-  dirLight.position.set(-3, 8, 3);
+  const dirLight = new DirectionalLight(0xffffff, 1);
+  dirLight.position.set(-5, 8, 3);
   dirLight.castShadow = true;
   dirLight.shadow.camera.zoom = 2;
   dirLight.shadow.radius = 3;
@@ -22,9 +22,15 @@ const addRectAreaLight = (scene) => {
   scene.add(rectLight);
 }
 
+const addAmbientLight = (scene) => {
+  const ambLight = new AmbientLight(0xffffff, 0.35);
+  scene.add(ambLight);
+}
+
 export default {
   addScene: (scene) => {
     addDirectionalLight(scene);
-    addRectAreaLight(scene);
+    addAmbientLight(scene);
+    // addRectAreaLight(scene);
   },
 };

@@ -6,6 +6,7 @@ import createRectAreaUniforms from './rect-area-uniforms.js';
 import createPhysics from './physics.js';
 
 import walls from './walls.js';
+import lights from './lights.js';
 import createBars from './bars.js';
 import createCamera from './camera.js';
 import createRenderer from './renderer.js';
@@ -52,6 +53,8 @@ async function init() {
   };
 
   hdrResult.dispose();
+
+  lights.addScene(scene);
 
   const gUp = () => {
     physics.gUp();

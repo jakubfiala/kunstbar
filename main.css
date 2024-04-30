@@ -131,6 +131,7 @@ section {
   justify-content: start;
   opacity: 0;
   height: auto;
+  min-height: 50vh;
   transition: opacity 500ms 1s;
 }
 
