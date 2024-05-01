@@ -1,7 +1,8 @@
-/* @font-face {
+@font-face {
   font-family: 'Mikola';
-  src: url('fonts/Mikola.woff');
-} */
+  src: url('fonts/OCMikolaVARVF.woff2') format('woff2'),
+       url('fonts/OCMikolaVARVF.woff') format('woff');
+}
 
 @keyframes fade-in {
   from {
@@ -28,7 +29,7 @@
 }
 
 html {
-  font-family: 'DejaVu Sans', sans-serif;
+  font-family: 'Mikola', sans-serif;
   font-size: 16px;
 }
 
@@ -36,6 +37,11 @@ html {
   html {
     font-size: 20px;
   }
+}
+
+h1, h2, h3, h4 {
+  font-weight: 400;
+  line-height: 1.1;
 }
 
 html, body {
@@ -299,7 +305,8 @@ section {
 }
 
 .comingsoon__title {
-  font-size: 2rem;
+  font-size: 3rem;
+  font-weight: 500;
   margin: 0 0 4rem;
 }
 
@@ -311,6 +318,10 @@ section {
 @media screen and (min-width: 768px) {
   .comingsoon__info {
     grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .comingsoon__title {
+    font-size: 4rem;
   }
 }
 
