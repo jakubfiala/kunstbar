@@ -31,6 +31,7 @@
 html {
   font-family: 'Mikola', sans-serif;
   font-size: 16px;
+  scroll-snap-type: y proximity;
 }
 
 @media screen and (min-width: 768px) {
@@ -92,7 +93,7 @@ body {
 .header--collapsed .logo {
   animation: fade-in 500ms 500ms both;
   width: 112px;
-  margin-top: 8rem;
+  margin-top: 6rem;
 }
 
 .main {
@@ -123,6 +124,7 @@ section {
   justify-content: end;
   height: 100vh;
   padding: 0 2rem;
+  scroll-snap-align: start;
 }
 
 .section--center {
@@ -137,12 +139,17 @@ section {
   justify-content: start;
   opacity: 0;
   height: auto;
-  min-height: 50vh;
+  min-height: 75vh;
   transition: opacity 500ms 1s;
+  padding-top: 6rem;
 }
 
 .section--blue-visible {
   opacity: 1;
+}
+
+.section--blue .right p {
+  font-size: 1.25rem;
 }
 
 @media screen and (min-width: 1024px) {
@@ -150,10 +157,15 @@ section {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
+    min-height: 50vh;
   }
 
   .section--blue h2 {
     margin-top: 0;
+  }
+
+  .section--blue .right {
+    margin-top: -3rem;
   }
 }
 
@@ -339,7 +351,8 @@ form {
 }
 
 input {
-  font-size: inherit;
+  font-size: 1.5rem;
   font-family: inherit;
   max-width: 100%;
+  padding: 0.5rem;
 }
