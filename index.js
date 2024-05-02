@@ -19,7 +19,7 @@ async function init() {
   renderer.toneMapping = LinearToneMapping;
 
   const hdrLoader = new HDRJPGLoader(renderer);
-  const hdrResult = await hdrLoader.loadAsync('hdri/GSG_HC015_A021_Showroom_01_2k.jpg');
+  const hdrResult = await hdrLoader.loadAsync('img/hdri.jpg');
   const hdri = hdrResult.renderTarget.texture;
   hdri.mapping = EquirectangularReflectionMapping;
 
