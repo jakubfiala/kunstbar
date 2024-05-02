@@ -5,6 +5,17 @@ const PORTRAIT = 0;
 const LANDSCAPE = 1;
 const aspect = window.innerWidth >= window.innerHeight ? LANDSCAPE : PORTRAIT;
 
+const boxCount = aspect === PORTRAIT ? 70 : 100;
+const boxScale = aspect === PORTRAIT ? 2.5 : 3.3;
+const boxSizeX = boxScale * 0.2;
+const boxSizeY = boxScale * 0.5;
+const boxSizeZ = boxScale * 0.09;
+
+const boxDistWidthX = aspect === PORTRAIT ? 1 : 3;
+const boxDistOffsetX = boxDistWidthX / 2;
+const boxDistWidthY = 22;
+const boxDistOffsetY = 2;
+
 const uv = [
   0,0,0,1,1,0,1,1, // lr
   0,0,0,1,1,0,1,1, // lr
@@ -14,14 +25,13 @@ const uv = [
   0,0,0,1,1,0,1,1, // back
 ];
 
+const randomDist = (width, offset) => Math.random() * width - offset;
+
 export default ({ hdri }) => {
   const material = mirror({ hdri });
   const matrix = new Matrix4();
-  const boxScale = aspect === PORTRAIT ? 2.5 : 3.3;
-  const boxCount = aspect === PORTRAIT ? 70 : 100;
-  const geometryBox = new BoxGeometry(boxScale * 0.2, boxScale * 0.5, boxScale * 0.09);
-  console.log(BufferAttribute);
-  console.log(geometryBox);
+
+  const geometryBox = new BoxGeometry(boxSizeX, boxSizeY, boxSizeZ);
   geometryBox.setAttribute('uv', new BufferAttribute(Float32Array.from(uv), 2));
 
   const bars = new InstancedMesh(geometryBox, material, boxCount);
@@ -30,10 +40,11 @@ export default ({ hdri }) => {
   bars.receiveShadow = true;
 
   for (let i = 0; i < bars.count; i++) {
-    const boxX = aspect === PORTRAIT
-      ? Math.random() * 1 - 0.5
-      : Math.random() * 3 - 1.5;
-    matrix.setPosition(boxX, Math.random() * 22 + 2, 0);
+    matrix.setPosition(
+      randomDist(boxDistWidthX, boxDistOffsetX),
+      randomDist(boxDistWidthY + boxDistOffsetY),
+      0,
+    );
     bars.setMatrixAt(i, matrix);
   }
 
