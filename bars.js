@@ -42,7 +42,7 @@ export default ({ hdri }) => {
   for (let i = 0; i < bars.count; i++) {
     matrix.setPosition(
       randomDist(boxDistWidthX, boxDistOffsetX),
-      randomDist(boxDistWidthY + boxDistOffsetY),
+      randomDist(boxDistWidthY, boxDistOffsetY),
       0,
     );
     bars.setMatrixAt(i, matrix);
