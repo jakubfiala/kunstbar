@@ -226,9 +226,46 @@ section {
 .drawing-widget p {
   border: solid 2px black;
   font-size: 1rem;
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem 0.5rem 0.5rem 0.75rem;
   border-bottom: none;
   margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+#save-drawing {
+  background: black;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  text-decoration: none;
+}
+
+#save-drawing:hover {
+  background: #1262DB;
+  text-decoration: underline;
+}
+
+#save-drawing:not([href=""]) {
+  display: none;
+}
+
+#save-drawing[href=""] + span {
+  display: none;
+}
+
+#save-drawing + span {
+  border-top: solid 1px gray;
+  padding-top: 0.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  #save-drawing + span {
+    border-top: none;
+    padding-top: 0;
+  }
 }
 
 .drawing-widget p,
@@ -293,7 +330,7 @@ section {
   cursor: pointer;
   height: var(--size);
   width: var(--size);
-  font-size: calc(var(--size) - 6px);
+  font-size: 16px;
   display: flex;
   justify-content: center;
   align-items: center;

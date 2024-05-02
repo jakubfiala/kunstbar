@@ -35,5 +35,10 @@ export default (canvas) => {
     weight.classList.toggle('weight--selected');
   }));
 
+  const saveLink = document.getElementById('save-drawing');
+  saveLink.addEventListener('click', () => {
+    saveLink.href = canvas.toDataURL();
+  });
+
   return atrament;
 };
