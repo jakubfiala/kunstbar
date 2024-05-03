@@ -24,9 +24,9 @@ export default async function createPhysics({ onGameIntersect = () => {} }) {
 	const instancedBodies = [];
 
 	const gameColliderWidth = getWidth();
-	const gameColliderShape = new Cuboid(gameColliderWidth - 2, 4, WALL_DEPTH - 1);
+	const gameColliderShape = new Cuboid(gameColliderWidth - 2, 3, WALL_DEPTH - 1);
 	const gameColliderRotation = { w: 0, x: rad(90), y: 0.0, z: 0.0 };
-	const gameColliderPosition = { x: 0, y: 8, z: 0 };
+	const gameColliderPosition = { x: 0, y: 9, z: 0 };
 
 	function addMesh(mesh, mass = 0) {
 		const { geometry: { parameters } } = mesh;
