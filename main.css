@@ -31,7 +31,6 @@
 html {
   font-family: 'Mikola', sans-serif;
   font-size: 16px;
-  scroll-snap-type: y proximity;
 }
 
 @media screen and (min-width: 768px) {
@@ -124,7 +123,6 @@ section {
   justify-content: end;
   height: 100vh;
   padding: 0 2rem;
-  scroll-snap-align: start;
 }
 
 .section--center {
