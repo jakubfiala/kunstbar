@@ -393,3 +393,14 @@ input {
   max-width: 100%;
   padding: 0.5rem;
 }
+
+#game {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 0.5rem;
+}

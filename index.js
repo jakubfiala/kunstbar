@@ -11,6 +11,7 @@ import createBars from './bars.js';
 import createCamera from './camera.js';
 import createRenderer from './renderer.js';
 import createDrawing from './drawing.js';
+import { onGameIntersect, initGame } from './game.js';
 
 setTimeout(init, 500);
 
@@ -25,7 +26,7 @@ async function init() {
 
   createRectAreaUniforms();
 
-  const physics = await createPhysics();
+  const physics = await createPhysics({ onGameIntersect });
   const camera = createCamera();
   const scene = new Scene();
   scene.environment = hdri;
@@ -78,6 +79,7 @@ async function init() {
 
   const drawingIO = new IntersectionObserver((entries) => {
     if (entries.some(({ isIntersecting }) => isIntersecting)) {
+      setTimeout(initGame, 5000);
       physics.gDown();
       document.getElementById('bars').classList.add('bars--behind');
     }

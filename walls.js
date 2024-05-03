@@ -2,9 +2,9 @@ import { Mesh, BoxGeometry, MeshBasicMaterial } from 'three';
 
 import { rad, map } from './vercajch.js';
 
-const WALL_THICKNESS = 0.01;
-const WALL_HEIGHT = 20;
-const WALL_DEPTH = 2;
+export const WALL_THICKNESS = 0.01;
+export const WALL_HEIGHT = 20;
+export const WALL_DEPTH = 2;
 
 const material = new MeshBasicMaterial({ transparent: true, opacity: 0 });
 
@@ -17,7 +17,7 @@ const makeMesh = (x = 10, y = 10) => {
   return mesh;
 }
 
-const getWidth = () => {
+export const getWidth = () => {
   if (window.innerWidth <= 1200) {
     return map(window.innerWidth, 320, 1200, 2.5, 7);
   }
