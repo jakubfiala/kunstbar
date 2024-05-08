@@ -79,7 +79,7 @@ async function init() {
 
   const drawingIO = new IntersectionObserver((entries) => {
     if (entries.some(({ isIntersecting }) => isIntersecting)) {
-      setTimeout(initGame, 5000);
+      // setTimeout(initGame, 5000);
       physics.gDown();
       document.getElementById('bars').classList.add('bars--behind');
     }
