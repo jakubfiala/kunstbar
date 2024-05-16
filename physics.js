@@ -1,5 +1,5 @@
 import { Vector3, Quaternion, Matrix4 } from 'three';
-import { World, RigidBodyDesc, ColliderDesc, Cuboid, init, QueryFilterFlags } from '@dimforge/rapier3d-compat';
+import { World, RigidBodyDesc, ColliderDesc, Cuboid, init } from '@dimforge/rapier3d-compat';
 
 import { WALL_DEPTH, getWidth } from './walls.js';
 import { rad } from './vercajch.js';
