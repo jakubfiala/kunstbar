@@ -402,3 +402,33 @@ input {
   -webkit-backdrop-filter: blur(20px);
   padding: 0.5rem;
 }
+
+#mc_embed_signup {
+  background: transparent;
+  font: inherit;
+}
+
+#mc_embed_signup #mc-embedded-subscribe-form {
+  margin: 0;
+}
+
+#mc_embed_signup #mc-embedded-subscribe {
+  font-size: 1.25rem;
+  height: auto;
+  padding: 1rem;
+  line-height: 1;
+  border-radius: 0;
+  margin: 0;
+  flex: 1 0 min-content;
+}
+
+#mc_embed_signup #mc-fields {
+  gap: 1rem;
+}
+
+
+@media screen and (min-width: 768px) {
+  #mc_embed_signup #mc-fields {
+    display: flex;
+  }
+}

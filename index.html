@@ -1,98 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>&#10074; kunstbar</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-		<link type="text/css" rel="stylesheet" href="main.css">
-		<link rel="preload" href="./img/hdri.jpg" as="image">
-		<script type="module" src="./dist/index.js" async></script>
-	</head>
-	<body>
-		<canvas id="bars" class="bars"></canvas>
 
-    <main id="main" class="main">
-			<header id="header" class="header">
-				<svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 349.16 122.59" fill="currentColor"><path d="m323.86 81.87 25.3-25.3L292.59 0l-12.65 12.65-12.65 12.65zM12.31 41.09v79.84H0V41.09zM.44 99.52l34.38-34.04h15.3L8.98 106.07zm29.28-7.54 21.29 28.94H36.82L15.53 91.98zM108.89 65.48v55.44H96.03v-6.76c-2 2.74-4.44 4.82-7.32 6.26q-4.32 2.16-10.2 2.16c-4.51 0-8.26-.96-11.26-2.88-2.99-1.92-5.23-4.53-6.71-7.82s-2.22-7.04-2.22-11.26V65.47h12.86v35.15c0 4.58.7 7.84 2.11 9.76 1.4 1.92 3.92 2.88 7.54 2.88 5.03 0 8.82-1.68 11.37-5.05 2.55-3.36 3.83-8.33 3.83-14.91V65.47h12.86ZM135.06 65.48v7.98c1.92-3.25 4.38-5.67 7.37-7.26s6.49-2.38 10.48-2.38c4.58 0 8.39.94 11.42 2.83s5.28 4.47 6.76 7.76 2.22 7.04 2.22 11.26v35.26h-12.86V85.67c0-4.51-.72-7.72-2.16-9.65-1.44-1.92-3.9-2.88-7.37-2.88-5.47 0-9.48 1.68-12.03 5.05-2.55 3.36-3.83 8.3-3.83 14.8v27.95H122.2V65.5h12.86ZM197.82 109.56c.74 1.37 1.98 2.4 3.71 3.1 1.74.7 4.12 1.05 7.15 1.05 4.36 0 7.37-.63 9.04-1.89 1.66-1.26 2.49-3.29 2.49-6.1 0-1.62-.35-2.99-1.05-4.1s-1.98-2.01-3.83-2.72c-1.85-.7-4.44-1.24-7.76-1.61-4.58-.74-8.52-1.68-11.81-2.83-3.29-1.14-5.99-2.86-8.09-5.16s-3.09-5.25-2.94-8.87c0-2.73.83-5.38 2.49-7.93s4.25-4.64 7.76-6.27 7.89-2.44 13.14-2.44c4.88 0 9.07.74 12.59 2.22 3.51 1.48 6.19 3.48 8.04 5.99s2.77 5.21 2.77 8.1h-13.08c0-1.7-.32-3.11-.94-4.21-.63-1.11-1.68-1.92-3.16-2.44q-2.22-.78-6.21-.78c-4.07 0-6.8.68-8.21 2.05-1.4 1.37-2.11 3.16-2.11 5.38-.07 1.48.29 2.64 1.11 3.49.81.85 2.01 1.54 3.6 2.05 1.59.52 4.01 1.04 7.26 1.55 8.06 1.04 13.99 2.96 17.8 5.77s5.71 6.95 5.71 12.42c0 3.33-1 6.26-2.99 8.81-2 2.55-4.86 4.58-8.59 6.1-3.73 1.51-8.08 2.27-13.03 2.27q-7.875 0-13.53-2.49c-3.77-1.66-6.64-3.92-8.59-6.76-1.96-2.84-2.94-5.97-2.94-9.37h13.09c0 2.37.37 4.23 1.11 5.6ZM272.23 74.8h-32.71v-9.31h32.71zm-11.65-26.4v56.66c0 1.63.17 2.9.5 3.83s.87 1.57 1.61 1.94 1.7.55 2.88.55h6.65v9.54h-6.65c-3.18 0-6.12-.68-8.82-2.05s-4.84-3.23-6.43-5.6-2.38-5.1-2.38-8.21V48.4z" class="cls-1"/></svg>
-			</header>
-      <section id="intro">
-				<p class="tagline">
-					ART GALLERY FOR UPCOMING ARTISTS AND COLLECTORS THAT SET THE BAR FOR CONCEPT, DIGITAL AND FOOD.
+<head>
+	<title>&#10074; kunstbar</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<link type="text/css" rel="stylesheet" href="main.css">
+	<link rel="preload" href="./img/hdri.jpg" as="image">
+	<meta name="author" content="https://fiala.space">
+	<script type="module" src="./dist/index.js" async></script>
+</head>
+
+<body>
+	<canvas id="bars" class="bars"></canvas>
+
+	<main id="main" class="main">
+		<header id="header" class="header">
+			<svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 349.16 122.59"
+				fill="currentColor">
+				<path
+					d="m323.86 81.87 25.3-25.3L292.59 0l-12.65 12.65-12.65 12.65zM12.31 41.09v79.84H0V41.09zM.44 99.52l34.38-34.04h15.3L8.98 106.07zm29.28-7.54 21.29 28.94H36.82L15.53 91.98zM108.89 65.48v55.44H96.03v-6.76c-2 2.74-4.44 4.82-7.32 6.26q-4.32 2.16-10.2 2.16c-4.51 0-8.26-.96-11.26-2.88-2.99-1.92-5.23-4.53-6.71-7.82s-2.22-7.04-2.22-11.26V65.47h12.86v35.15c0 4.58.7 7.84 2.11 9.76 1.4 1.92 3.92 2.88 7.54 2.88 5.03 0 8.82-1.68 11.37-5.05 2.55-3.36 3.83-8.33 3.83-14.91V65.47h12.86ZM135.06 65.48v7.98c1.92-3.25 4.38-5.67 7.37-7.26s6.49-2.38 10.48-2.38c4.58 0 8.39.94 11.42 2.83s5.28 4.47 6.76 7.76 2.22 7.04 2.22 11.26v35.26h-12.86V85.67c0-4.51-.72-7.72-2.16-9.65-1.44-1.92-3.9-2.88-7.37-2.88-5.47 0-9.48 1.68-12.03 5.05-2.55 3.36-3.83 8.3-3.83 14.8v27.95H122.2V65.5h12.86ZM197.82 109.56c.74 1.37 1.98 2.4 3.71 3.1 1.74.7 4.12 1.05 7.15 1.05 4.36 0 7.37-.63 9.04-1.89 1.66-1.26 2.49-3.29 2.49-6.1 0-1.62-.35-2.99-1.05-4.1s-1.98-2.01-3.83-2.72c-1.85-.7-4.44-1.24-7.76-1.61-4.58-.74-8.52-1.68-11.81-2.83-3.29-1.14-5.99-2.86-8.09-5.16s-3.09-5.25-2.94-8.87c0-2.73.83-5.38 2.49-7.93s4.25-4.64 7.76-6.27 7.89-2.44 13.14-2.44c4.88 0 9.07.74 12.59 2.22 3.51 1.48 6.19 3.48 8.04 5.99s2.77 5.21 2.77 8.1h-13.08c0-1.7-.32-3.11-.94-4.21-.63-1.11-1.68-1.92-3.16-2.44q-2.22-.78-6.21-.78c-4.07 0-6.8.68-8.21 2.05-1.4 1.37-2.11 3.16-2.11 5.38-.07 1.48.29 2.64 1.11 3.49.81.85 2.01 1.54 3.6 2.05 1.59.52 4.01 1.04 7.26 1.55 8.06 1.04 13.99 2.96 17.8 5.77s5.71 6.95 5.71 12.42c0 3.33-1 6.26-2.99 8.81-2 2.55-4.86 4.58-8.59 6.1-3.73 1.51-8.08 2.27-13.03 2.27q-7.875 0-13.53-2.49c-3.77-1.66-6.64-3.92-8.59-6.76-1.96-2.84-2.94-5.97-2.94-9.37h13.09c0 2.37.37 4.23 1.11 5.6ZM272.23 74.8h-32.71v-9.31h32.71zm-11.65-26.4v56.66c0 1.63.17 2.9.5 3.83s.87 1.57 1.61 1.94 1.7.55 2.88.55h6.65v9.54h-6.65c-3.18 0-6.12-.68-8.82-2.05s-4.84-3.23-6.43-5.6-2.38-5.1-2.38-8.21V48.4z"
+					class="cls-1" />
+			</svg>
+		</header>
+		<section id="intro">
+			<p class="tagline">
+				ART GALLERY FOR UPCOMING ARTISTS AND COLLECTORS THAT SET THE BAR FOR CONCEPT, DIGITAL AND
+				FOOD.
+			</p>
+			<hr>
+		</section>
+		<section class="section--center" id="drawing-section">
+			<div class="drawing-widget">
+				<p>
+					Draw on the bar
+					<a id="save-drawing" href="" download="my-kunst-bar.png">Save</a>
+					<span>Send us your drawing via <a href="mailto:hello@kunstbar.nl">e-mail</a> or <a
+							href="https://instagram.com/kunstbar_denhaag">Instagram</a>!</span>
 				</p>
-				<hr>
-			</section>
-			<section class="section--center" id="drawing-section">
-				<div class="drawing-widget">
-					<p>
-						Draw on the bar
-						<a id="save-drawing" href="" download="my-kunst-bar.png">Save</a>
-						<span>Send us your drawing via <a href="mailto:info@kunstbar.nl">e-mail</a> or <a href="https://instagram.com/kunstbar_denhaag">Instagram</a>!</span>
-					</p>
-					<canvas id="drawing"></canvas>
-					<div class="drawing__controls">
-						<ul class="swatches">
-							<li class="swatch swatch--selected" data-color="#F3F417" style="--bg-color: #F3F417;"></li>
-							<li class="swatch" data-color="#DD01A3" style="--bg-color: #DD01A3;"></li>
-							<li class="swatch" data-color="#0D8A3F" style="--bg-color: #0D8A3F;"></li>
-							<li class="swatch" data-color="#1262DB" style="--bg-color: #1262DB;"></li>
-							<li class="swatch" data-color="#000000" style="--bg-color: #000000;"></li>
-							<li class="swatch swatch--eraser" data-color="#fff" style="--bg-color: #fff;">
-								<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="m2.586 15.408 4.299 4.299a1 1 0 0 0 .707.293h12.001v-2h-6.958l7.222-7.222c.78-.779.78-2.049 0-2.828L14.906 3a2.003 2.003 0 0 0-2.828 0l-4.75 4.749-4.754 4.843a2.007 2.007 0 0 0 .012 2.816M13.492 4.414l4.95 4.95-2.586 2.586L10.906 7zM8.749 9.156l.743-.742 4.95 4.95-4.557 4.557a1 1 0 0 0-.069.079h-1.81l-4.005-4.007z"/></svg>
-							</li>
-						</ul>
-						<ul class="weights">
-							<li class="weight" data-weight="5" style="--size: 15px;"></li>
-							<li class="weight weight--selected" data-weight="20" style="--size: 25px;"></li>
-							<li class="weight" data-weight="40" style="--size: 40px;"></li>
-							<li class="weight" data-weight="60" style="--size: 60px;"></li>
-						</ul>
-					</div>
+				<canvas id="drawing"></canvas>
+				<div class="drawing__controls">
+					<ul class="swatches">
+						<li class="swatch swatch--selected" data-color="#F3F417" style="--bg-color: #F3F417;">
+						</li>
+						<li class="swatch" data-color="#DD01A3" style="--bg-color: #DD01A3;"></li>
+						<li class="swatch" data-color="#0D8A3F" style="--bg-color: #0D8A3F;"></li>
+						<li class="swatch" data-color="#1262DB" style="--bg-color: #1262DB;"></li>
+						<li class="swatch" data-color="#000000" style="--bg-color: #000000;"></li>
+						<li class="swatch swatch--eraser" data-color="#fff" style="--bg-color: #fff;">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+								<path
+									d="m2.586 15.408 4.299 4.299a1 1 0 0 0 .707.293h12.001v-2h-6.958l7.222-7.222c.78-.779.78-2.049 0-2.828L14.906 3a2.003 2.003 0 0 0-2.828 0l-4.75 4.749-4.754 4.843a2.007 2.007 0 0 0 .012 2.816M13.492 4.414l4.95 4.95-2.586 2.586L10.906 7zM8.749 9.156l.743-.742 4.95 4.95-4.557 4.557a1 1 0 0 0-.069.079h-1.81l-4.005-4.007z" />
+							</svg>
+						</li>
+					</ul>
+					<ul class="weights">
+						<li class="weight" data-weight="5" style="--size: 15px;"></li>
+						<li class="weight weight--selected" data-weight="20" style="--size: 25px;"></li>
+						<li class="weight" data-weight="40" style="--size: 40px;"></li>
+						<li class="weight" data-weight="60" style="--size: 60px;"></li>
+					</ul>
 				</div>
-			</section>
-			<section class="section--blue" id="blue-section">
-				<div class="left">
-					<p class="tagline-blue">
-						A new space for art, design and drinks in the heart of Den Haag.
-					</p>
-					<p class="tagline-blue">
-						Currently we are working hard to open our doors. Expect to meet us in September.
-					</p>
-				</div>
-				<div class="right">
-					<h2>DON'T MISS THE NEWS</h2>
-					<p>Subscribe to our newsletter</p>
-					<form>
-						<input type="email" placeholder="Your e-mail" />
-					</form>
-				</div>
-			</section>
-
-			<section class="section--center">
-				<div class="comingsoon">
-					<h2 class="comingsoon__title">COMING SOON</h2>
-					<div class="comingsoon__info">
-						<div class="comingsoon__info-part">
-							<p><a href="mailto:hello@kunstbar.com">hello@kunstbar.com</a></p>
-							<p><a href="tel:+31612283217">+31 612 283 217</a></p>
-							<p>IG: <a href="https://instagram.com/kunstbar_denhaag">kunstbar_denhaag</a></p>
-						</div>
-						<div class="comingsoon__info-part">
-							<p>
-								Location:<br>
-								Noordeinde 152A<br>
-								Den Haag
-							</p>
-						</div>
-					</div>
-				</div>
-			</section>
-
-			<div id="game" aria-hidden="true" hidden>
-				<span id="game-instructions">Keep the bars afloat for a bit longer!</span>
-				<span id="game-time">60</span>
-				<span id="game-lose" hidden>🙁 Try again next time!</span>
-				<span id="game-win" hidden>🎉 Contratulations, you win! 🎉</span>
 			</div>
-    </main>
-	</body>
+		</section>
+		<section class="section--blue" id="blue-section">
+			<div class="left">
+				<p class="tagline-blue">
+					A new space for art, design and drinks in the heart of Den Haag.
+				</p>
+				<p class="tagline-blue">
+					Currently we are working hard to open our doors. Expect to meet us in September.
+				</p>
+			</div>
+			<div class="right">
+				<h2>DON'T MISS THE NEWS</h2>
+				<p>Subscribe to our newsletter</p>
+				<div id="mc_embed_shell">
+					<link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet"
+						type="text/css">
+					<div id="mc_embed_signup">
+						<form
+							action="https://kunstbar.us22.list-manage.com/subscribe/post?u=28add3b54aedb28cdb7001fb0&amp;id=35a55d578e&amp;f_id=0085cee1f0"
+							method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
+							class="validate" formtarget="_blank" novalidate="">
+							<div id="mc_embed_signup_scroll">
+								<div id="mc-fields" class="mc-field-group">
+									<input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" value="" placeholder="Your email address">
+									<input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Subscribe">
+								</div>
+								<div hidden="">
+									<input type="hidden" name="tags" value="6038">
+								</div>
+								<div style="position: absolute; left: -5000px;" aria-hidden="true">
+									/* real people should not fill this in and expect good things - do not remove this
+									or risk form bot signups */
+									<input type="text" name="b_28add3b54aedb28cdb7001fb0_35a55d578e" tabindex="-1" value="">
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section--center">
+			<div class="comingsoon">
+				<h2 class="comingsoon__title">COMING SOON</h2>
+				<div class="comingsoon__info">
+					<div class="comingsoon__info-part">
+						<p><a href="mailto:hello@kunstbar.nl">hello@kunstbar.nl</a></p>
+						<p><a href="tel:+31612283217">+31 612 283 217</a></p>
+						<p>IG: <a href="https://instagram.com/kunstbar_denhaag">kunstbar_denhaag</a></p>
+					</div>
+					<div class="comingsoon__info-part">
+						<p>
+							Location:<br>
+							Noordeinde 152A<br>
+							Den Haag
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+</body>
+
 </html>
