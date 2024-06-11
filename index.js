@@ -91,15 +91,11 @@ async function init() {
   const blueIO = new IntersectionObserver((entries) => {
     const entry = entries.find(({ isIntersecting }) => isIntersecting);
     if (entry) {
-      document.body.classList.add('body--blue');
-      blueSection.classList.add('section--blue-visible');
       physics.gUp();
     } else {
-      document.body.classList.remove('body--blue');
-      blueSection.classList.remove('section--blue-visible');
       physics.gDown();
     }
-  }, { threshold: 0.5 });
+  }, { threshold: 0.25 });
 
   blueIO.observe(blueSection);
 

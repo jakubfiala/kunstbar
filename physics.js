@@ -102,7 +102,6 @@ export default async function createPhysics({ onGameIntersect = () => {} }) {
 
 		const intersectingBar = world.intersectionWithShape(gameColliderPosition, gameColliderRotation, gameColliderShape, undefined, undefined, undefined, undefined, (collider) => collider.mass() > 0);
 		if (intersectingBar) {
-			console.log('intersecting', intersectingBar.handle);
 			onGameIntersect();
 		}
 
