@@ -11,9 +11,9 @@ import createBars from './bars.js';
 import createCamera from './camera.js';
 import createRenderer from './renderer.js';
 import createDrawing from './drawing.js';
-import { onGameIntersect, initGame } from './game.js';
+import { onGameIntersect } from './game.js';
 
-setTimeout(init, 500);
+setTimeout(init, 3500);
 
 async function init() {
   const renderer = createRenderer();
@@ -100,4 +100,17 @@ async function init() {
   blueIO.observe(blueSection);
 
   drawing.addEventListener('strokeend', () => bars.material.map.needsUpdate = true);
+
+  const scrollyHighlightIO = new IntersectionObserver(
+    (entries) => entries
+      .forEach((entry) => entry.target.classList.toggle('scrolly-highlight--highlighted', entry.isIntersecting)),
+    { threshold: 1 },
+  );
+
+  Array
+    .from(document.getElementsByClassName('scrolly-highlight'))
+    .forEach((span, index) => {
+      span.style.animationDelay = `${1000 + index * 100}ms`;
+      scrollyHighlightIO.observe(span);
+    });
 };

@@ -23,7 +23,7 @@
     "@monogrid/gainmap-js": "^3.0.5",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
-    "atrament": "^4.3.0",
+    "atrament": "^4.4.0",
     "rollup": "^4.16.1",
     "three": "^0.163.0"
   }
