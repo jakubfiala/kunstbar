@@ -196,15 +196,11 @@ section {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
-    min-height: 60vh;
+    min-height: 90vh;
   }
 
   .section--newsletter h2 {
     margin-top: 0;
-  }
-
-  .section--newsletter .left h2 {
-    margin-top: 3rem;
   }
 }
 
