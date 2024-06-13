@@ -537,6 +537,7 @@ input {
   max-width: 700px;
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
 }
 
 #mc_embed_signup #mce-EMAIL {
@@ -577,10 +578,6 @@ input {
   background: #B50087;
 }
 
-#mc_embed_signup #mc-fields {
-  gap: 0;
-}
-
 #mc_embed_signup #mc-fields label {
   margin: 0;
   font-size: 1.25rem;
@@ -600,6 +597,7 @@ input {
   #mc_embed_signup #mc-fields {
     border-top: solid 3px black;
     border-bottom: solid 3px black;
+    flex-direction: row;
   }
 
   #mc_embed_signup #mc-fields label {
