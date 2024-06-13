@@ -428,18 +428,22 @@ section {
 }
 
 .marquee {
-  animation: marquee 5s linear infinite;
+  width: max-content;
+  margin: 0;
   white-space: nowrap;
   font-size: 15rem;
   font-weight: 500;
   display: flex;
-  gap: 2ch;
-  margin: 4rem 0;
+}
+
+.marquee__text {
+  animation: marquee 20s linear infinite;
+  padding: 0 1ch;
 }
 
 @media screen and (min-width: 768px) {
   .marquee {
-    animation-duration: 15s;
+    margin: 4rem 0;
   }
 }
 
