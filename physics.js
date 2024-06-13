@@ -1,14 +1,11 @@
 import { Vector3, Quaternion, Matrix4 } from 'three';
 import { World, RigidBodyDesc, ColliderDesc, Cuboid, init } from '@dimforge/rapier3d-compat';
 
-import { WALL_DEPTH, getWidth } from './walls.js';
-import { rad } from './vercajch.js';
-
 const G = 9.81;
 const FRAME_RATE = 50;
 const _scale = new Vector3(1, 1, 1);
 
-export default async function createPhysics({ onGameIntersect = () => {} }) {
+export default async function createPhysics() {
 	await init();
 
 	const gravity = new Vector3(0.0, -9.81, 0.0);
@@ -22,11 +19,6 @@ export default async function createPhysics({ onGameIntersect = () => {} }) {
 	const _matrix = new Matrix4();
 
 	const instancedBodies = [];
-
-	const gameColliderWidth = getWidth();
-	const gameColliderShape = new Cuboid(gameColliderWidth - 2, 3, WALL_DEPTH - 1);
-	const gameColliderRotation = { w: 0, x: rad(90), y: 0.0, z: 0.0 };
-	const gameColliderPosition = { x: 0, y: 9, z: 0 };
 
 	function addMesh(mesh, mass = 0) {
 		const { geometry: { parameters } } = mesh;
@@ -99,12 +91,6 @@ export default async function createPhysics({ onGameIntersect = () => {} }) {
 				mesh.quaternion.copy(body.rotation());
 			}
 		}
-
-		const intersectingBar = world.intersectionWithShape(gameColliderPosition, gameColliderRotation, gameColliderShape, undefined, undefined, undefined, undefined, (collider) => collider.mass() > 0);
-		if (intersectingBar) {
-			onGameIntersect();
-		}
-
 	}
 
 	setInterval(step, 1000 / FRAME_RATE);
@@ -124,8 +110,6 @@ export default async function createPhysics({ onGameIntersect = () => {} }) {
 		wakeBarsUp();
 		gravity.y = -G;
   };
-
-	window.instancedBodies = instancedBodies;
 
 	return { addMesh, gUp, gDown };
 }

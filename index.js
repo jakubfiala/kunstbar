@@ -11,9 +11,6 @@ import createBars from './bars.js';
 import createCamera from './camera.js';
 import createRenderer from './renderer.js';
 import createDrawing from './drawing.js';
-import { onGameIntersect } from './game.js';
-
-setTimeout(init, 3500);
 
 async function init() {
   const renderer = createRenderer();
@@ -26,7 +23,7 @@ async function init() {
 
   createRectAreaUniforms();
 
-  const physics = await createPhysics({ onGameIntersect });
+  const physics = await createPhysics();
   const camera = createCamera();
   const scene = new Scene();
   scene.environment = hdri;
@@ -57,35 +54,49 @@ async function init() {
 
   lights.addScene(scene);
 
-  const gUp = () => {
+  const enterWebsite = () => {
     physics.gUp();
     document.getElementById('bars').classList.add('bars--hidden');
     document.getElementById('header').classList.add('header--collapsed');
     document.getElementById('main').classList.add('main--visible');
+
+    const introIO = new IntersectionObserver((entries) => {
+      if (entries.some(({ isIntersecting }) => isIntersecting)) {
+        physics.gUp();
+      }
+    }, { threshold: 0.75 });
+
+    introIO.observe(document.getElementById('intro'));
+
+    const scrollyHighlightIO = new IntersectionObserver(
+      (entries) => entries
+        .forEach((entry) => entry.target.classList.toggle('scrolly-highlight--highlighted', entry.isIntersecting)),
+      { threshold: 1 },
+    );
+
+    Array
+      .from(document.getElementsByClassName('scrolly-highlight'))
+      .forEach((span, index) => {
+        span.style.animationDelay = `${1000 + index * 100}ms`;
+        scrollyHighlightIO.observe(span);
+      });
   }
 
-  document.addEventListener('scroll', gUp, { once: true });
-	document.getElementById('bars').addEventListener('click', gUp, { once: true });
+  document.addEventListener('scroll', enterWebsite, { once: true });
+	document.getElementById('bars').addEventListener('click', enterWebsite, { once: true });
 
   const drawing = createDrawing(document.getElementById('drawing'));
 
-  const introIO = new IntersectionObserver((entries) => {
-    if (entries.some(({ isIntersecting }) => isIntersecting)) {
-      physics.gUp();
-    }
-  }, { threshold: 0.75 });
-
-  introIO.observe(document.getElementById('intro'));
-
   const drawingIO = new IntersectionObserver((entries) => {
     if (entries.some(({ isIntersecting }) => isIntersecting)) {
-      // setTimeout(initGame, 5000);
       physics.gDown();
       document.getElementById('bars').classList.add('bars--behind');
     }
   }, { threshold: 0.75 });
 
   drawingIO.observe(document.getElementById('drawing-section'));
+
+  drawing.addEventListener('strokeend', () => bars.material.map.needsUpdate = true);
 
   const blueSection = document.getElementById('blue-section')
   const blueIO = new IntersectionObserver((entries) => {
@@ -98,19 +109,6 @@ async function init() {
   }, { threshold: 0.25 });
 
   blueIO.observe(blueSection);
-
-  drawing.addEventListener('strokeend', () => bars.material.map.needsUpdate = true);
-
-  const scrollyHighlightIO = new IntersectionObserver(
-    (entries) => entries
-      .forEach((entry) => entry.target.classList.toggle('scrolly-highlight--highlighted', entry.isIntersecting)),
-    { threshold: 1 },
-  );
-
-  Array
-    .from(document.getElementsByClassName('scrolly-highlight'))
-    .forEach((span, index) => {
-      span.style.animationDelay = `${1000 + index * 100}ms`;
-      scrollyHighlightIO.observe(span);
-    });
 };
+
+setTimeout(init, 3500);
