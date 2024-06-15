@@ -114,10 +114,10 @@ body {
 }
 
 .intro-animated-bar {
-  --step: 300ms;
+  --step: 150ms;
   opacity: 0;
   animation: fade-in var(--step) step-start;
-  animation-delay: calc(var(--index) * var(--step) + 500ms);
+  animation-delay: calc(var(--index) * var(--step) + 250ms);
 }
 
 .intro-animated-bar--end {
@@ -396,11 +396,10 @@ section {
 
 .weight {
   background: black;
-  border-radius: var(--size);
-  color: black;
+  color: transparent;
   cursor: pointer;
-  height: var(--size);
-  width: var(--size);
+  height: calc(var(--size) * 0.8);
+  width: calc(var(--size) * 1.5);
   font-size: 16px;
   display: flex;
   justify-content: center;

@@ -111,4 +111,4 @@ async function init() {
   blueIO.observe(blueSection);
 };
 
-setTimeout(init, 3500);
+setTimeout(init, 2000);
