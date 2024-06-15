@@ -406,12 +406,8 @@ section {
   align-items: center;
 }
 
-.weight::after {
-  content: '✓';
-}
-
 .weight--selected {
-  color: white;
+  opacity: 0.5;
 }
 
 .section--text {
