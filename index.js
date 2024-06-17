@@ -71,7 +71,7 @@ async function init() {
     const scrollyHighlightIO = new IntersectionObserver(
       (entries) => entries
         .forEach((entry) => entry.target.classList.toggle('scrolly-highlight--highlighted', entry.isIntersecting)),
-      { rootMargin: '-45% 0px -45% 0px' },
+      { rootMargin: '-40% 0px -40% 0px' },
     );
 
     Array
