@@ -225,7 +225,8 @@ section {
   z-index: 2;
   cursor: pointer;
   width: 100vw;
-  height: calc(100vh + 50px);
+  height: 100vh;
+  height: 100lvh;
   overflow: hidden;
 }
 

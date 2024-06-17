@@ -1,5 +1,5 @@
 import { Vector3, Quaternion, Matrix4 } from 'three';
-import { World, RigidBodyDesc, ColliderDesc, Cuboid, init } from '@dimforge/rapier3d-compat';
+import { World, RigidBodyDesc, ColliderDesc, init } from '@dimforge/rapier3d-compat';
 
 const G = 9.81;
 const FRAME_RATE = 50;
