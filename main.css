@@ -14,19 +14,6 @@
   }
 }
 
-@keyframes highlight-in {
-  from {
-    background: transparent;
-    color: black;
-  }
-
-  to {
-    background: var(--bg-color);
-    color: var(--text-color);
-  }
-}
-
-
 @keyframes slide-in {
   from {
     transform: translateY(25%);
@@ -113,17 +100,6 @@ body {
   display: none;
 }
 
-.intro-animated-bar {
-  --step: 150ms;
-  opacity: 0;
-  animation: fade-in var(--step) step-start;
-  animation-delay: calc(var(--index) * var(--step) + 250ms);
-}
-
-.intro-animated-bar--end {
-  animation-fill-mode: forwards;
-}
-
 .header--collapsed .header__logo {
   display: block;
 }
@@ -185,10 +161,11 @@ section {
 
 .section--newsletter h2 {
   text-transform: uppercase;
+  margin: 1rem 0;
 }
 
 .section--newsletter .left h2 {
-  font-size: 4rem;
+  font-size: 3rem;
 }
 
 @media screen and (min-width: 1024px) {
@@ -197,6 +174,10 @@ section {
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
     min-height: 90vh;
+  }
+
+  .section--newsletter .left h2 {
+    font-size: 4rem;
   }
 
   .section--newsletter h2 {
@@ -398,8 +379,8 @@ section {
   background: black;
   color: transparent;
   cursor: pointer;
-  height: calc(var(--size) * 0.8);
-  width: calc(var(--size) * 1.5);
+  height: calc(var(--size) * 0.5);
+  width: calc(var(--size) * 1.2);
   font-size: 16px;
   display: flex;
   justify-content: center;
@@ -426,7 +407,7 @@ section {
   width: max-content;
   margin: 0;
   white-space: nowrap;
-  font-size: 15rem;
+  font-size: 10rem;
   font-weight: 500;
   display: flex;
 }
@@ -438,6 +419,7 @@ section {
 
 @media screen and (min-width: 768px) {
   .marquee {
+    font-size: 15rem;
     margin: 4rem 0;
   }
 }
@@ -506,17 +488,6 @@ input {
   font-size: 1.5rem;
   font-family: inherit;
   max-width: 100%;
-  padding: 0.5rem;
-}
-
-#game {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  z-index: 10;
-  background: rgba(255,255,255,0.6);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   padding: 0.5rem;
 }
 
@@ -608,5 +579,6 @@ input {
 .scrolly-highlight--highlighted {
   --bg-color: #1262DB;
   --text-color: white;
-  animation: highlight-in 500ms 1s step-start;
+  background: var(--bg-color);
+  color: var(--text-color);
 }

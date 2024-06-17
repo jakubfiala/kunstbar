@@ -71,13 +71,12 @@ async function init() {
     const scrollyHighlightIO = new IntersectionObserver(
       (entries) => entries
         .forEach((entry) => entry.target.classList.toggle('scrolly-highlight--highlighted', entry.isIntersecting)),
-      { threshold: 1 },
+      { rootMargin: '-45% 0px -45% 0px' },
     );
 
     Array
       .from(document.getElementsByClassName('scrolly-highlight'))
       .forEach((span, index) => {
-        span.style.animationDelay = `${1000 + index * 100}ms`;
         scrollyHighlightIO.observe(span);
       });
   }
@@ -111,4 +110,4 @@ async function init() {
   blueIO.observe(blueSection);
 };
 
-setTimeout(init, 2000);
+init();
