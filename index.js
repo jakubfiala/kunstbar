@@ -75,6 +75,7 @@ async function init() {
       });
   }
 
+  document.addEventListener('pointerdown', enterWebsite, { once: true });
   document.addEventListener('scroll', enterWebsite, { once: true });
 	document.getElementById('bars').addEventListener('click', enterWebsite, { once: true });
 
