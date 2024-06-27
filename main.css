@@ -456,7 +456,7 @@ section {
 
 .footer {
   width: 100%;
-  padding: 2rem;
+  padding: 4rem 2rem;
   font-size: 1rem;
   position: relative;
   z-index: 1;
@@ -466,12 +466,16 @@ section {
 .footer__title {
   font-size: 3rem;
   font-weight: 500;
-  margin: 0 0 2rem;
+  margin: 0 0 3rem;
   border-bottom: solid 3px black;
-  padding: 0 0 1rem;
+  padding: 0 0 2rem;
 }
 
 @media screen and (min-width: 1200px) {
+  .footer {
+    padding: 2rem;
+  }
+
   .footer__title {
     margin: 0 0 4rem;
     padding: 0 0 2rem;
@@ -514,7 +518,6 @@ input {
 }
 
 #mc_embed_signup #mc-fields {
-  background-color: white;
   padding-bottom: 0;
   width: auto;
   max-width: 700px;
@@ -551,6 +554,7 @@ input {
   text-transform: uppercase;
   background: #DD01A3;
   border: none;
+  border-radius: 0;
   color: white;
   font-weight: 500;
   flex: 1 1 min-content;
