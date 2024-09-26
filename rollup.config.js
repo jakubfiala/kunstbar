@@ -10,7 +10,7 @@ if (process.env.NODE_ENV !== 'dev') {
 export default {
   input: 'index.js',
   output: {
-    dir: 'dist',
+    dir: 'wp-theme/assets/js',
   },
   plugins,
 };

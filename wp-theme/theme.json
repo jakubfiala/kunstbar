@@ -1,0 +1,73 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "templateParts": [
+    {
+			"area": "header",
+			"name": "header",
+			"title": "Header"
+		}
+  ],
+  "settings": {
+    "spacing": {
+      "margin": true,
+      "padding": true,
+      "blockGap": true
+    },
+    "border": {
+      "color": true,
+      "width": true
+    },
+    "typography": {
+      "fontSizes": [
+				{
+					"name": "Small",
+					"slug": "small",
+					"size": "13px"
+				},
+				{
+					"name": "Medium",
+					"slug": "medium",
+					"size": "20px"
+				},
+				{
+					"name": "Large",
+					"slug": "large",
+					"size": "30px"
+				},
+				{
+					"name": "Extra Large",
+					"slug": "x-large",
+					"size": "60px"
+				}
+			],
+      "fontFamilies": [
+        {
+          "name": "Primary",
+          "slug": "primary",
+          "fontFamily": "'Mikola', sans-serif",
+          "fontFace": [
+            {
+              "fontFamily": "Mikola",
+              "src": [
+                "file:./assets/fonts/OCMikolaVARVF.woff2"
+              ]
+            },
+            {
+              "fontFamily": "Mikola",
+              "src": [
+                "file:./assets/fonts/OCMikolaVARVF.woff"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "styles": {
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--primary)",
+      "fontSize": "var(--wp--preset--font-size--medium)"
+    }
+  }
+}

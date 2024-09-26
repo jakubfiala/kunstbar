@@ -11,13 +11,14 @@ import createBars from './bars.js';
 import createCamera from './camera.js';
 import createRenderer from './renderer.js';
 import createDrawing from './drawing.js';
+import assetsBase from './assets.js';
 
 async function init() {
   const renderer = createRenderer();
   renderer.toneMapping = LinearToneMapping;
 
   const hdrLoader = new HDRJPGLoader(renderer);
-  const hdrResult = await hdrLoader.loadAsync('img/hdri.jpg');
+  const hdrResult = await hdrLoader.loadAsync(`${assetsBase}/img/hdri.jpg`);
   const hdri = hdrResult.renderTarget.texture;
   hdri.mapping = EquirectangularReflectionMapping;
 
@@ -80,16 +81,23 @@ async function init() {
 	document.getElementById('bars').addEventListener('click', enterWebsite, { once: true });
 
   const drawing = createDrawing(document.getElementById('drawing'));
+  let hasDrawn = false;
 
   const drawingIO = new IntersectionObserver((entries) => {
     if (entries.some(({ isIntersecting }) => isIntersecting)) {
       physics.gDown();
       document.getElementById('bars').classList.add('bars--behind');
+      if (!hasDrawn) {
+        document.getElementById('drawing-example').classList.add('drawing-example--shown');
+      }
+    } else {
+      document.getElementById('drawing-example').classList.remove('drawing-example--shown');
     }
   }, { threshold: 0.75 });
 
   drawingIO.observe(document.getElementById('drawing-section'));
 
+  drawing.addEventListener('dirty', () => hasDrawn = true);
   drawing.addEventListener('strokeend', () => bars.material.map.needsUpdate = true);
 
   const blueSection = document.getElementById('blue-section')

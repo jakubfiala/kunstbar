@@ -1,0 +1,130 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.main {
+  min-height: 70vh;
+}
+
+.kunstbar-page--bar::before {
+  background-image: url("/wp-content/themes/kunstbar/assets/img/colour-bars.svg");
+  content: "";
+  position: fixed;
+  z-index: -1;
+  width: 120vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  left: 50%;
+  translate: -50% 0;
+  top: -10vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.header__link, .header__link:visited {
+  display: block;
+  color: black;
+}
+
+.header__logo {
+  height: 2.5rem;
+}
+
+.wp-block-post-title {
+  margin-bottom: 0;
+  font-size: 4rem;
+}
+
+.exhibitions-tabs {
+  --pds-tabs-padding: 0;
+}
+
+.exhibitions-tabs a,
+.exhibitions-tabs a:visited {
+  color: black;
+  text-decoration: none;
+}
+
+.exhibitions-tabs a:hover {
+  text-decoration: underline;
+}
+
+.exhibitions-tabs .post {
+  position: relative;
+}
+
+.exhibitions-tabs .wp-block-post-excerpt__more-link,
+.exhibitions-tabs .wp-block-post-excerpt__more-link:visited {
+  background: #DD01A3;
+  color: white;
+  display: block;
+  text-transform: uppercase;
+  padding: 0.5rem;
+  rotate: -10deg;
+  margin: 0 0 0 auto;
+  width: max-content;
+}
+
+@media screen and (min-width: 768px) {
+  .exhibitions-tabs .wp-block-post-excerpt__more-link,
+  .exhibitions-tabs .wp-block-post-excerpt__more-link:visited {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    rotate: -23deg;
+  }
+}
+
+.exhibitions-tabs .wp-block-post-excerpt__more-link:hover {
+  background: #B50087;
+}
+
+.exhibitions-tabs .post:nth-child(2n) .wp-block-post-excerpt__more-link {
+  background: #0D8A3F;
+  rotate: 8deg;
+}
+
+.exhibitions-tabs .post:nth-child(2n) .wp-block-post-excerpt__more-link:hover {
+  background: #085c2a;
+}
+
+.exhibitions-tabs .post:nth-child(3n) .wp-block-post-excerpt__more-link {
+  background: #1262DB;
+  rotate: -12deg;
+}
+
+.exhibitions-tabs .post:nth-child(3n) .wp-block-post-excerpt__more-link:hover {
+  background: #0c4293;
+}
+
+.exhibition-nav {
+  gap: var(--wp--preset--spacing--50);
+  font-size: 2rem !important;
+}
+
+@media screen and (min-width: 768px) {
+  .exhibition-nav {
+    gap: var(--wp--preset--spacing--70);
+  }
+}
+
+.exhibition-nav a {
+  text-decoration: none;
+}
+
+.exhibition-nav a:hover,
+a.exhibition-nav-link--selected {
+  color: black;
+}
