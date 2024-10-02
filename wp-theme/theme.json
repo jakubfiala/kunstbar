@@ -9,6 +9,15 @@
 		}
   ],
   "settings": {
+    "dimensions": {
+			"aspectRatios": [
+				{
+					"name": "4:1",
+					"slug": "4-1",
+					"ratio": "4/1.5"
+				}
+			]
+		},
     "spacing": {
       "margin": true,
       "padding": true,

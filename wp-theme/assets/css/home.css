@@ -50,6 +50,10 @@ h1, h2, h3, h4 {
   line-height: 1.1;
 }
 
+a {
+  color: #1262DB;
+}
+
 html, body {
   background: white;
   margin: 0;
@@ -99,7 +103,7 @@ body {
   max-width: 1920px;
   position: absolute;
   top: 50%;
-  translate: 0 -50%;
+  translate: -3px calc(-50% + -24px);
 }
 
 .main--visible .intro__logo {
@@ -144,6 +148,7 @@ section {
   flex-direction: column;
   justify-content: end;
   height: 100vh;
+  height: 100svh;
   padding: 0 2rem;
   width: 100vw;
   overflow: hidden;
@@ -270,10 +275,10 @@ section {
   --draw-increment: 0.25s;
   --draw-length: 235;
   position: absolute;
-  top: 10%;
+  top: 15%;
   left: 10%;
   width: 80%;
-  height: 80%;
+  height: 70%;
   pointer-events: none;
 }
 
@@ -312,8 +317,7 @@ section {
 }
 
 #save-drawing:hover {
-  background: #B50087;
-  text-decoration: underline;
+  background: #1262DB;
 }
 
 #save-drawing:not([href=""]) {
@@ -343,7 +347,6 @@ section {
 
 .drawing__controls {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   border-top: solid 3px black;
 }
@@ -411,7 +414,7 @@ section {
   .weights {
     border-left: solid 3px black;
     padding-left: 1rem;
-    justify-content: end;
+    justify-content: space-evenly;
   }
 }
 
@@ -420,7 +423,7 @@ section {
   color: transparent;
   cursor: pointer;
   height: calc(var(--size) * 0.4);
-  width: calc(var(--size) * 1.1);
+  width: calc(var(--size) * 1);
   font-size: 16px;
   display: flex;
   justify-content: center;
@@ -485,6 +488,7 @@ section {
 }
 
 .footer {
+  border-top: solid 3px black;
   width: 100%;
   padding: 4rem 2rem;
   font-size: 1rem;
@@ -496,19 +500,13 @@ section {
 .footer__title {
   font-size: 3rem;
   font-weight: 500;
-  margin: 0 0 3rem;
-  border-bottom: solid 3px black;
-  padding: 0 0 2rem;
+  margin: 0;
+  padding: 0 0 1rem;
 }
 
 @media screen and (min-width: 1200px) {
   .footer {
     padding: 2rem;
-  }
-
-  .footer__title {
-    margin: 0 0 4rem;
-    padding: 0 0 2rem;
   }
 }
 
@@ -525,6 +523,10 @@ section {
   .footer__title {
     font-size: 4rem;
   }
+}
+
+.footer__info-part {
+  max-width: 600px;
 }
 
 .footer__info p {
@@ -573,13 +575,14 @@ input {
 }
 
 #mc_embed_signup #mc-embedded-subscribe {
+  appearance: none;
   font-size: 1.25rem;
   font-weight: 500;
   height: auto;
   padding: 1rem;
   line-height: 1;
   border-radius: 0;
-  margin: 0;
+  margin: 0.5rem 0 0;
   flex: 1 0 min-content;
   text-transform: uppercase;
   background: #DD01A3;
@@ -589,6 +592,8 @@ input {
   font-weight: 500;
   flex: 1 1 min-content;
   cursor: pointer;
+  border: none;
+  border-radius: 0;
 }
 
 #mc_embed_signup #mc-embedded-subscribe:hover {
@@ -619,6 +624,10 @@ input {
 
   #mc_embed_signup #mc-fields label {
     padding: 0 0.5rem;
+  }
+
+  #mc_embed_signup #mc-embedded-subscribe {
+    margin-top: 0;
   }
 }
 

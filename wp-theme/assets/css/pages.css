@@ -2,6 +2,10 @@ html {
   scroll-behavior: smooth;
 }
 
+a {
+  color: #1262DB;
+}
+
 .main {
   min-height: 70vh;
 }
@@ -43,7 +47,7 @@ html {
 
 .wp-block-post-title {
   margin-bottom: 0;
-  font-size: 4rem;
+  font-size: 3.5rem;
 }
 
 .exhibitions-tabs {
@@ -54,10 +58,6 @@ html {
 .exhibitions-tabs a:visited {
   color: black;
   text-decoration: none;
-}
-
-.exhibitions-tabs a:hover {
-  text-decoration: underline;
 }
 
 .exhibitions-tabs .post {
@@ -88,7 +88,7 @@ html {
 }
 
 .exhibitions-tabs .wp-block-post-excerpt__more-link:hover {
-  background: #B50087;
+  background: #1262DB;
 }
 
 .exhibitions-tabs .post:nth-child(2n) .wp-block-post-excerpt__more-link {
@@ -97,7 +97,7 @@ html {
 }
 
 .exhibitions-tabs .post:nth-child(2n) .wp-block-post-excerpt__more-link:hover {
-  background: #085c2a;
+  background: #DD01A3;
 }
 
 .exhibitions-tabs .post:nth-child(3n) .wp-block-post-excerpt__more-link {
@@ -106,12 +106,12 @@ html {
 }
 
 .exhibitions-tabs .post:nth-child(3n) .wp-block-post-excerpt__more-link:hover {
-  background: #0c4293;
+  background: #0D8A3F;
 }
 
 .exhibition-nav {
   gap: var(--wp--preset--spacing--50);
-  font-size: 2rem !important;
+  font-size: 1.5rem !important;
 }
 
 @media screen and (min-width: 768px) {
@@ -122,9 +122,11 @@ html {
 
 .exhibition-nav a {
   text-decoration: none;
+  padding-bottom: 0.5rem;
+  display: block;
 }
 
 .exhibition-nav a:hover,
 a.exhibition-nav-link--selected {
-  color: black;
+  border-bottom: solid 3px black;
 }

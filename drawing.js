@@ -6,7 +6,7 @@ export default (canvas) => {
     height: canvas.offsetHeight,
   });
 
-  atrament.color = '#F3F417';
+  atrament.color = '#DD01A3';
   atrament.weight = 20;
 
   const context = canvas.getContext('2d');
