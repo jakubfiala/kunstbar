@@ -82,3 +82,7 @@
   display: block;
   padding: 0.5rem;
 }
+
+.kunstbar-hidden {
+  display: none !important;
+}
