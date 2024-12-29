@@ -10,21 +10,6 @@ a {
   min-height: 70vh;
 }
 
-.kunstbar-page--bar::before {
-  background-image: url("/wp-content/themes/kunstbar/assets/img/colour-bars.svg");
-  content: "";
-  position: fixed;
-  z-index: -1;
-  width: 120vw;
-  height: 100vh;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center center;
-  left: 50%;
-  translate: -50% 0;
-  top: -10vh;
-}
-
 .header {
   display: flex;
   justify-content: space-between;
