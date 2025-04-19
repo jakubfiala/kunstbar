@@ -54,6 +54,7 @@ async function init() {
     document.getElementById('bars').classList.add('bars--hidden');
     document.getElementById('header').classList.add('header--collapsed');
     document.getElementById('main').classList.add('main--visible');
+    document.body.classList.add('entered');
 
     const introIO = new IntersectionObserver((entries) => {
       if (entries.some(({ isIntersecting }) => isIntersecting)) {

@@ -655,3 +655,21 @@ input {
     display: none;
   }
 }
+
+#tebi_rs_01 {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 500ms 1s;
+}
+
+.entered #tebi_rs_01 {
+  opacity: 1;
+  pointer-events: auto;
+  translate: 0.5rem 0.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .entered #tebi_rs_01 {
+    translate: 0;
+  }
+}
